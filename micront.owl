@@ -1,0 +1,1417 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://purl.obolibrary.org/obo/micront.owl"
+         xmlns="http://purl.obolibrary.org/obo/micront.owl#">
+
+<owl:Ontology rdf:about="http://purl.obolibrary.org/obo/micront.owl"/>
+
+<owl:ObjectProperty rdf:about="#crosslinked_to"/>
+
+<owl:Class rdf:about="#MICRONT_01000000">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">terrestrial</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000446</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_01010000">
+  <rdfs:subClassOf rdf:resource="#MICRONT_01000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">soil</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00001998</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_01020100">
+  <rdfs:subClassOf rdf:resource="#MICRONT_01000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">arid</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000230</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000179</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000097</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_01020200">
+  <rdfs:subClassOf rdf:resource="#MICRONT_01000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">grassland</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000106</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000177</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_01020201">
+  <rdfs:subClassOf rdf:resource="#MICRONT_01000000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_04040000"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pasture</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000266</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_01020300">
+  <rdfs:subClassOf rdf:resource="#MICRONT_01000000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_04040100"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cropland</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01001244</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_01020400">
+  <rdfs:subClassOf rdf:resource="#MICRONT_01000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">forest</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000111</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000174</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">includes woodland</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_01020500">
+  <rdfs:subClassOf rdf:resource="#MICRONT_01000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tundra</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000180</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_01020600">
+  <rdfs:subClassOf rdf:resource="#MICRONT_01000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">permafrost</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000134</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_01020700">
+  <rdfs:subClassOf rdf:resource="#MICRONT_01000000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02060100"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02090000"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wetland</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000043</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_01020701">
+  <rdfs:subClassOf rdf:resource="#MICRONT_01020700"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02060100"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02090000"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02040200"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_09010103"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">salt marsh</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000054</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_01020702">
+  <rdfs:subClassOf rdf:resource="#MICRONT_01020700"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02060100"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02080100"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mangrove</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000181</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_01020703">
+  <rdfs:subClassOf rdf:resource="#MICRONT_01020700"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02060100"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02090000"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">peatland</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000044</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_01030000">
+  <rdfs:subClassOf rdf:resource="#MICRONT_01000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">subsurface</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_01040000">
+  <rdfs:subClassOf rdf:resource="#MICRONT_01000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rock</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00001995</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02000000">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">aquatic</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00002030</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02010000">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02000000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_09010101"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fresh water</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000873</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">low salinity (&lt;0.5ppt)</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02010100">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02010000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_09010101"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02060100"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lake</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000252</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ ENVO_00000020</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02010101">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02010100"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_09010101"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02060100"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02070200"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02080300"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lake bed</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000268</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02010200">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02010000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_09010101"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02060200"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stream</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000253</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ ENVO_00000023</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02010201">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02010200"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_09010101"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02060200"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02070200"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02080300"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stream bed</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000383</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02020000">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">marine</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000447</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02020100">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02020000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02080300"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sea floor</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000482</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02030000">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02000000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02060200"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">spring</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000027</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02030100">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02030000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02060200"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_09010205"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hot spring</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000051</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02030200">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02030000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02080300"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02060200"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02020100"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_09010205"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hydrothermal vent</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000215</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02030300">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02030000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02060200"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">seep</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000262</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02040100">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02000000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_09010102"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">brackish</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000322</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">medium salinity (0.5-30ppt)</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02040101">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02040100"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_09010102"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">estuary</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000020</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02040200">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02000000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_09010103"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">saline</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000307</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">high salinity (30-50 ppt)</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02040300">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02000000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_09010104"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">brine</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00003044</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">very high salinity (&gt;=50 ppt)</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02050000">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02000000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_09010201"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ice</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000277</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02060100">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lentic water body</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000617</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">still (non-flowing) water body</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02060200">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lotic water body</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000618</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">flowing water body</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02070100">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02000000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_01030000"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02010000"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">groundwater</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01001004</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">includes aquifers</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02070200">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02000000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02080300"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sediment</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00002007</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02080100">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">littoral</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000125</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02080200">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pelagic</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000023</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02080201">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02080200"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">epipelagic</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000035</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">depths 0-200m</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02080202">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02080200"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mesopelagic</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000036</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">depths 200-1000m</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02080203">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02080200"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">bathypelagic</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000037</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">depths 1000-2500m</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02080204">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02080200"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">abyssal</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000038</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">depths 2500-6000m</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02080205">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02080200"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hadal</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000039</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">depths &gt;6000m</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02080300">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">benthic</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000024</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_02090000">
+  <rdfs:subClassOf rdf:resource="#MICRONT_02000000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_01020700"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02060100"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">paludal</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000043</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03000000">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">host-associated</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03010000">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">plant host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01001001</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 33090</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID points to "Viridiplantae"</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03010100">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03010000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rhizosphere</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00005801</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/PO_0009005</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03010200">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03010000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">phyllosphere</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/PO_0006001</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03010300">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03010000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">plant litter</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000628</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020000">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">animal host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01001002</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 33208</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Metazoa"</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020100">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mammalian host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 40674</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020101">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020100"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">porcine host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 9821</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Suidae"</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020110">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020100"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">primate host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 9443</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020111">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020110"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">human host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 9606</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020120">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020100"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ruminant host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 9845</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Ruminantia"</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020121">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020120"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">bovine host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 27592</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Bovinae"</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020122">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020120"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cervid host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 9850</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Cervidae", i.e. deer</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020123">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020120"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ovine host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 9935</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for genus "Ovis", i.e. sheep</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020124">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020120"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">caprine host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 9922</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for genus "Capra", i.e. goats and ibex</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020130">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020100"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">carnivore host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 33554</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Carnivora"</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020131">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020130"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">canine host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 9608</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Canidae", i.e. dogs, wolfs, coyotes and foxes</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020132">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020130"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">feline host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 9681</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Felidae", i.e. cats and panthers</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020133">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020130"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ursine host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 9632</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Ursidae", i.e. bears</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020200">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">reptilian host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 32561</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Sauria"; this includes birds</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020210">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020200"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">avian host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 8782</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Aves"</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020300">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">insect host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 50557</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Insecta"</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020301">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_01000000"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tick host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 6935</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Ixodida"</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020400">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02000000"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fish host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 7898</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Actinopterygii", i.e. ray-finned fishes</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020500">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mollusc host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 6447</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Mollusca"</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020600">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02020000"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02080300"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">coral host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000150</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 6101</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Anthozoa"</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020700">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02020000"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02080300"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sponge host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 6040</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Porifera"</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03020800">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">amphibian host</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 8292</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Amphibia"</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03030100">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">digestive tract</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01001033</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0001555</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03030110">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03030100"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mouth</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_08000002</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0000165</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03030111">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03030110"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">saliva</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_02000036</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0001836</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03030112">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03030110"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_09020402"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_09090100"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ancient dental calculus</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03030120">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03030100"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stomach</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0000945</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03030130">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03030100"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_03020120"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rumen</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0007365</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03030140">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03030100"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">intestine</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_2100002</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0000160</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03030141">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03030140"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">feces</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00002003</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03030200">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">urogenital tract</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0004122</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03030201">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03030200"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">vagina</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0000996</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03030300">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">airways</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0001004</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03030400">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">skin</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_2100003</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0002097</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03030500">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">bodily fluid</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_02000019</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03030501">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03030500"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_03020100"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">breast milk</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_02000031</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">refers to breast milk only; note that milk as (processed) food stuff is annotated as "anthropogenic:food:dairy product"</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03030502">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03030500"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">blood</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_02000020</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03030503">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03030500"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cerebrospinal fluid</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_02000029</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03030600">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mucosa</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0000344</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_03030700">
+  <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">eye</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0000970</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_04000000">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">anthropogenic</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000313</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_04010000">
+  <rdfs:subClassOf rdf:resource="#MICRONT_04000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">artificial</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_04010100">
+  <rdfs:subClassOf rdf:resource="#MICRONT_04010000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mock community</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_08000002</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_04010200">
+  <rdfs:subClassOf rdf:resource="#MICRONT_04010000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">negative control</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01001042</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_04010300">
+  <rdfs:subClassOf rdf:resource="#MICRONT_04010000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">controlled environment</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">microcosms and mesocosms</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_04020000">
+  <rdfs:subClassOf rdf:resource="#MICRONT_04000000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_01000000"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">built environment</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_04020100">
+  <rdfs:subClassOf rdf:resource="#MICRONT_04020000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hospital environment</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00002173</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_04030000">
+  <rdfs:subClassOf rdf:resource="#MICRONT_04000000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02000000"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wastewater</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00002001</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">generic term to be used when more specific info is not available</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_04030100">
+  <rdfs:subClassOf rdf:resource="#MICRONT_04030000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_02000000"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sewage</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00002018</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">unprocessed wastewater (before reaching the treatment plant)</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_04030200">
+  <rdfs:subClassOf rdf:resource="#MICRONT_04030000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sludge</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00002044</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Includes also activated sludge (ENVO:00002046)</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_04040000">
+  <rdfs:subClassOf rdf:resource="#MICRONT_04000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">agriculture</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000077</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_04040100">
+  <rdfs:subClassOf rdf:resource="#MICRONT_04040000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">crop farming</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_04040200">
+  <rdfs:subClassOf rdf:resource="#MICRONT_04040000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">manure</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_04050000">
+  <rdfs:subClassOf rdf:resource="#MICRONT_04000000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_01000000"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mine</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000076</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_04060000">
+  <rdfs:subClassOf rdf:resource="#MICRONT_04000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">food</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/FOODON_00002403</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_04060100">
+  <rdfs:subClassOf rdf:resource="#MICRONT_04060000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fermented food</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/FOODON_00001258</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_04060200">
+  <rdfs:subClassOf rdf:resource="#MICRONT_04060000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dairy product</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/FOODON_00001256</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_04060201">
+  <rdfs:subClassOf rdf:resource="#MICRONT_04060200"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_04060100"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cheese</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_04060300">
+  <rdfs:subClassOf rdf:resource="#MICRONT_04060000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">meat product</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_04070000">
+  <rdfs:subClassOf rdf:resource="#MICRONT_04000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">waste</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00002264</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_04070100">
+  <rdfs:subClassOf rdf:resource="#MICRONT_04070000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">compost</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00002170</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_05000000">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">air</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00002005</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09010101">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09010100"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">low salinity</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;0.5ppt in water</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09010102">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09010100"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">medium salinity</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.5-30ppt in water</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09010103">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09010100"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">high salinity</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">30-50ppt in water</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09010104">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09010100"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">very high salinity</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&gt;50ppt in water</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09010201">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09010200"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">very low temperature</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000309</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/PATO_0001306</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;=7 deg C</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09010202">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09010200"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">low temperature</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000309</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/PATO_0001306</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8-19 deg C</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09010203">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09010200"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">medium temperature</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">20-45 deg C</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09010204">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09010200"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">high temperature</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000305</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">46-64 deg C</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09010205">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09010200"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">very high temperature</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000318</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&gt;=65 deg C</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09010301">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09010300"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">acidic</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000315</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pH &lt; 6</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09010302">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09010300"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">neutral ph range</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09010303">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09010300"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">alkaline</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000316</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pH &gt; 8</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09010401">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09010400"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">oxic</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&gt;= 4mg/L</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09010402">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09010400"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hypoxic</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">or hypoxic, &lt;4 mg/L oxygen (but could be 3), see https://www.pnas.org/doi/10.1073/pnas.0803833105</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09010403">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09010400"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">anoxic</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">or anoxic, &lt;0.5 mg/L oxygen</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09030000">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">biofilm</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00002034</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09030100">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09030000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">microbial mat</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000008</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09040100">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09040000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_03020000"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wild</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wild animals</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09040200">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09040000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_03020000"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">captive</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">captive animals (eg in a zoo), but not domesticated</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09040300">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09040000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_03020000"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_04040000"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">domestic</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">includes domesticated animals</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09040400">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09040000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_03020000"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pet</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09020101">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09020100"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">infant</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0&lt;age≤2yr old</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09020102">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09020100"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">child</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2&lt;age≤10yrs old</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09020103">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09020100"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">adolescent</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10&lt;age≤18 yrs old</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09020104">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09020100"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">adult</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18&lt;age&lt;65yrs old</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09020105">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09020100"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">elderly</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">≥65 yrs old</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09020201">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09020200"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">preterm birth</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;37 gestational weeks</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09020202">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09020200"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">full term birth</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&gt;=37 gestational weeks</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09020301">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09020300"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_09020401"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">urban dweller</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">subject lives in an urban area (https://en.wikipedia.org/wiki/Urban_area)</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09020302">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09020300"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rural dweller</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">subject lives in a rural area (https://en.wikipedia.org/wiki/Rural_area)</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09020401">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09020400"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">industrialized</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09020402">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09020400"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">non-industrialized</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09020403">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09020400"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_09020402"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hunter-gatherer</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09020404">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09020400"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_09020402"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">traditional agriculturalist</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this includes pastoralists</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09090100">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ancient microbiome</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09090200">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">contaminated</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/CHEBI_78298</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">impacted by a contaminant</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09000000">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">descriptive tags</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09010100">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">salinity</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09010200">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">temperature</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09010300">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ph</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09010400">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">oxygen level</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09040000">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">captivity status</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09020100">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">age group</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09020200">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birth term</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09020300">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">place of residence</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MICRONT_09020400">
+  <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">host lifestyle</rdfs:label>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</rdfs:comment>
+</owl:Class>
+
+
+</rdf:RDF>
