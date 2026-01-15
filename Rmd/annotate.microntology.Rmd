@@ -1,0 +1,1511 @@
+---
+title: "Pre-populate microntology annotations"
+author: "Sebastian Schmidt"
+date: "2025-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+options(stringsAsFactors = FALSE)
+```
+
+## Prepare environment
+
+```{r}
+library(tidyverse)
+library(readxl)
+```
+
+Set paths and parameters.
+
+```{r}
+#Preallocate global data structures
+PARAM <- list()
+
+#Set relevant folder names
+PARAM$folder.Rmd <- paste0(getwd(), "/")
+PARAM$folder.base <- gsub("Rmd/", "", PARAM$folder.Rmd)
+PARAM$folder.metadata <- paste0(PARAM$folder.base, "metadata/")
+
+PARAM$use.version <- "20251126"
+
+PARAM$file.annotations <- paste0(PARAM$folder.metadata, "20260106.microntology_annotations.xlsx")
+```
+
+## Load data
+
+Database dumps, prepared using the script `prep.metadata.R`.
+
+```{r}
+load(paste0(PARAM$folder.metadata, PARAM$use.version, ".dat.sample.spire.master.Rdata"))
+load(paste0(PARAM$folder.metadata, PARAM$use.version, ".dat.sample.ena.raw.Rdata"))
+load(paste0(PARAM$folder.metadata, PARAM$use.version, ".dat.metalog.raw.Rdata"))
+load(paste0(PARAM$folder.metadata, PARAM$use.version, ".dat.microntology.raw.Rdata"))
+```
+
+Parse `microntology` terms list.
+
+```{r}
+dat.microntology.terms.raw <- read_tsv(paste0(PARAM$folder.metadata, "microntology.terms.v4.20260106.tsv")) %>%
+  #select(-`...10`) %>%
+  select(category:crosslink_term, hex_colour, text_colour = `text colour`) %>%
+  #map to previously stored microntology terms in db (from prior version)
+  left_join(
+    tmp.microntology.terms %>% select(-term_array),
+    by = "term"
+  ) %>%
+  #fix for those terms where the hierarchy changed
+  mutate(
+    microntology_term_id = case_when(
+      term == "aquatic:fresh water:lacustrine:lake bed" ~ 83,
+      term == "aquatic:fresh water:fluvial:stream bed" ~ 43,
+      term == "host-associated:animal host:mammalian host:primate host:human host" ~ 57,
+      term == "anthropogenic:artificial sample:mock community" ~ 79,
+      term == "anthropogenic:artificial sample:negative control" ~ 80,
+      term == "host-associated:animal host:bodily fluid:breast milk" ~ 91,
+      T ~ microntology_term_id
+    )
+  )
+```
+
+Parse manual `microntology` annotations.
+
+```{r}
+#Parse `env_material` to `microntology` mapping.
+map.env_material.microntology <- read_xlsx(PARAM$file.annotations, sheet = "metalog.env_material") %>%
+  rename(envo = environment_material)
+
+#Parse `env_feature` to `microntology` mapping.
+map.env_feature.microntology <-  read_xlsx(PARAM$file.annotations, sheet = "metalog.env_feature") %>%
+  rename(envo = environment_feature)
+
+#Parse `env_material` to `microntology` mapping for 'raw' ENA data.
+map.ena.env_material.microntology <-  read_xlsx(PARAM$file.annotations, sheet = "ena.env_material") %>%
+  rename(envo = environment_material)
+
+#Parse `env_feature` to `microntology` mapping for 'raw' ENA data.
+map.ena.env_feature.microntology <-  read_xlsx(PARAM$file.annotations, sheet = "metalog.env_feature") %>%
+  rename(envo = environment_feature)
+
+#Parse `scientific_name` to `microntology` mapping for 'raw' ENA data.
+map.ena.scientific_name.microntology <-  read_xlsx(PARAM$file.annotations, sheet = "ena.scientific_name")
+
+#Parse `isolation_source` to `microntology` mapping for 'raw' ENA data.
+map.ena.isolation_source.microntology <- read_xlsx(PARAM$file.annotations, sheet = "ena.isolation_source")
+
+#Load terms manually assigned on a per-study basis.
+tmp.microntology.manual.by_study <- read_xlsx(PARAM$file.annotations, sheet = "manual.studies")
+
+#Load terms manually assigned on a per-sample basis.
+tmp.microntology.manual.by_sample <- read_xlsx(PARAM$file.annotations, sheet = "manual.samples")
+```
+
+## Consolidate `microntology` annotations from different sources
+
+First, load previously annotated terms (from SPIRE v1).
+
+```{r}
+dat.microntology.existing <- tmp.microntology.existing %>%
+  mutate(microntology_terms = str_remove(microntology_terms, "\\{") %>% str_remove("\\}")) %>%
+  separate_rows(microntology_terms, sep = ",") %>%
+  mutate(microntology_terms = as.numeric(microntology_terms)) %>%
+  left_join(dat.microntology.terms.raw %>% select(id, term, microntology_term_id), by = c("microntology_terms" = "microntology_term_id")) %>%
+  group_by(sample_id) %>%
+  arrange(id) %>%
+  summarise(across(id:term, ~ str_c(.x, collapse=";")))
+```
+
+Next, get pre-annotated terms (via `ena-browser`).
+
+```{r message=TRUE}
+dat.microntology.draft <- tmp.microntology.draft %>%
+  separate_rows(draft_microntology, sep = ";") %>%
+  #map to previously stored microntology terms in db (from prior version)
+  left_join(
+    tmp.microntology.terms %>% select(-term_array),
+    by = c("draft_microntology" = "term")
+  ) %>%
+  left_join(dat.microntology.terms.raw %>% select(id, term, microntology_term_id), by = "microntology_term_id") %>%
+  group_by(ena_project_id) %>%
+  arrange(id) %>%
+  summarise(across(id, ~ str_c(.x, collapse=";"))) %>%
+  #Add further manually loaded annotations
+  bind_rows(
+    tmp.microntology.manual.by_study %>%
+      select(ena_project_id, id = microntology) %>%
+      filter(!is.na(id))
+  )
+
+#Merge with pre-existing annotations
+dat.microntology.pre <- dat.sample.spire.master %>%
+  select(sample_id, ena_project_id) %>%
+  left_join(dat.microntology.draft, by = "ena_project_id") %>%
+  left_join(dat.microntology.existing, by = "sample_id") %>%
+  filter(!is.na(id.x) | !is.na(id.y)) %>%
+  rowwise() %>%
+  mutate(
+    microntology_id = paste0(na.omit(id.x), na.omit(id.y), collapse = ';')
+  ) %>%
+  select(sample_id, ena_project_id, microntology_id) %>%
+  separate_rows(microntology_id, sep = ";") %>%
+  distinct() %>%
+  group_by(sample_id, ena_project_id) %>%
+  arrange(microntology_id) %>%
+  summarise(across(microntology_id, ~ str_c(.x, collapse=";"))) %>%
+  ungroup()
+```
+
+## Consolidate additional manually pre-annotated `microntology` terms
+
+Get ENA `env_material`, `env_feature` and `scientific_name` entries.
+
+```{r}
+map.ena.per_sample <- tmp.ena %>%
+  #Merge terms based on env_material
+  mutate(environment_material = tolower(environment_material)) %>%
+  left_join(
+    map.ena.env_material.microntology %>%
+      select(environment_material = envo, add.ena.env_material = microntology),
+    by = "environment_material"
+  ) %>%
+  #Merge terms based on env_feature
+  mutate(environment_feature = tolower(environment_feature)) %>%
+  left_join(
+    map.ena.env_feature.microntology %>%
+      select(environment_feature = envo, add.ena.env_feature = microntology),
+    by = "environment_feature"
+  ) %>%
+  #Merge terms based on scientific_name
+  mutate(scientific_name = tolower(scientific_name)) %>%
+  left_join(
+    map.ena.scientific_name.microntology %>%
+      select(scientific_name, add.ena.scientific_name = microntology),
+    by = "scientific_name"
+  ) %>%
+  #Merge terms based on isolation_source
+  mutate(isolation_source = tolower(isolation_source)) %>%
+  mutate(isolation_source = str_replace_all(isolation_source, "_", " ") %>% str_replace_all("-", " ")) %>%
+  left_join(
+    map.ena.isolation_source.microntology %>%
+      select(isolation_source, add.ena.isolation_source = microntology),
+    by = "isolation_source"
+  ) %>%
+  #Add information based on pH
+  mutate(
+    ph.clean = case_when(
+      is.na(ph) ~ NA,
+      ph %in% c("NaN", "not provided", "not applicable", "missing") ~ NA,
+      T ~ as.numeric(ph)
+    )
+  ) %>%
+  mutate(
+    add.ph = case_when(
+      ph.clean < 6 ~ "MICRONT:09010301",
+      ph.clean > 8 ~ "MICRONT:09010303",
+      !is.na(ph.clean) ~ "MICRONT:09010302"
+    )
+  ) %>%
+  mutate(across(c(environment_material, environment_feature, isolation_source), ~ replace(.x, .x %in% c("nan", "not provided", "not applicable", "missing"), NA)))
+```
+
+## Assign `host_tax_id`s to `microntology` terms
+
+Get NCBI taxonomies via `taxizedb`.
+
+```{r}
+library(taxizedb)
+
+#Download current NCBI taxonomy database
+db_download_ncbi(overwrite = T)
+```
+
+Collect `host_tax_id`s from the various sources.
+
+```{r}
+#Get `metalog` annotations for host species
+tmp.collect.animal <- tmp.metalog.animal %>%
+  select(metalog_sample_id, ena_ers_sample_id, host_tax_id) %>%
+  filter(!is.na(host_tax_id))
+
+#Get plant hosts from environmental data model
+tmp.pull <- tmp.metalog.environmental %>%
+  select(metalog_sample_id, ena_ers_sample_id, json_metadata) %>%
+  filter(grepl("host_tax_id", json_metadata))
+tmp.collect.plant <- cbind(
+  tmp.pull %>% select(-json_metadata),
+  tmp.pull %>% pull(json_metadata) %>% tidyjson::spread_all() %>% select(host_tax_id)
+) %>%
+  select(- `..JSON`) %>%
+  mutate(host_tax_id = as.integer(host_tax_id))
+
+#Get additional data from ENA
+scan.ena_ers_sample_id <- tmp.metalog.master %>%
+  filter(metalog_sample_id %in% dat.sample.spire.master$metalog_sample_id) %>%
+  pull(ena_ers_sample_id)
+tmp.collect.ena <- tmp.ena %>%
+  filter(host_tax_id != "NaN") %>%
+  #Ignore samples that were already accounted for in `metalog`
+  filter(!ena_ers_sample_id %in% scan.ena_ers_sample_id) %>%
+  mutate(host_tax_id = str_remove(host_tax_id, "\\.0")) %>%
+  select(ena_ers_sample_id, host_tax_id) %>%
+  mutate(host_tax_id = as.integer(host_tax_id))
+
+#Combine all of the above
+collect.host_tax_id <- bind_rows(
+  tmp.collect.animal,
+  tmp.collect.plant,
+  tmp.collect.ena
+) %>%
+  #Fix some deprecated tax IDs
+  mutate(
+    host_tax_id = case_when(
+      host_tax_id == 64717 ~ 2162900,
+      host_tax_id == 9790 ~ 89252,
+      host_tax_id == 137523 ~ 183177,
+      host_tax_id == 35510 ~ 9789,
+      host_tax_id == 164292 ~ 1933087,
+      T ~ host_tax_id
+    )
+  )
+```
+
+Parse `host_tax_id` and assign to `microntology` terms based on traversed (parent) tax IDs.
+
+```{r}
+tmp.host_classification <- collect.host_tax_id %>%
+  group_by(host_tax_id) %>%
+  tally(sort = T) %>%
+  filter(host_tax_id != 1) %>%
+  #head(20) %>%
+  mutate(lookup = map(host_tax_id, ~ taxizedb::classification(.x)[[1]])) %>%
+  unnest_wider(lookup)
+
+map.host_tax_id <- tmp.host_classification %>%
+  select(host_tax_id, n, name) %>%
+  unnest(name) %>%
+  group_by(host_tax_id, n) %>%
+  summarise(name = paste(name, collapse = ";")) %>%
+  mutate(
+    add.host_tax_id = case_when(
+      #human host
+      host_tax_id == 9606 ~ "MICRONT:03020111",
+      #(other) primate host
+      grepl("Primates", name) ~ "MICRONT:03020110",
+      #porcine (pig) host
+      grepl("Suidae", name) ~ "MICRONT:03020101",
+      #bovine host (cattle etc)
+      grepl("Bovinae", name) ~ "MICRONT:03020121",
+      #cervid host (deer etc)
+      grepl("Cervidae", name) ~ "MICRONT:03020122",
+      #ovine host (sheep)
+      grepl("Ovis", name) ~ "MICRONT:03020123",
+      #caprine host (goats)
+      grepl("Capra", name) ~ "MICRONT:03020124",
+      #other ruminants
+      grepl("Ruminantia", name) ~ "MICRONT:03020120",
+      #canine hosts (dogs etc)
+      grepl("Canidae", name) ~ "MICRONT:03020131",
+      #ursine hosts (bears)
+      grepl("Ursidae", name) ~ "MICRONT:03020133",
+      #feline hosts (cats etc)
+      grepl("Felidae", name) ~ "MICRONT:03020132",
+      #other carnivores
+      grepl("Carnivora", name) ~ "MICRONT:03020130",
+      #other mammals
+      grepl("Mammalia", name) ~ "MICRONT:03020100",
+      #avian hosts (birds)
+      grepl("Aves", name) ~ "MICRONT:03020210",
+      #other reptilian hosts
+      grepl("Sauria", name) ~ "MICRONT:03020200",
+      #amphibian hosts
+      grepl("Amphibia", name) ~ "MICRONT:03020800",
+      #insect hosts
+      grepl("Insecta", name) ~ "MICRONT:03020300",
+      #tick hosts
+      grepl("Ixodida", name) ~ "MICRONT:03020301",
+      #(ray-finned) fish hosts
+      grepl("Actinopterygii", name) ~ "MICRONT:03020400",
+      #mollusc hosts
+      grepl("Mollusca", name) ~ "MICRONT:03020500",
+      #coral hosts
+      grepl("Anthozoa", name) ~ "MICRONT:03020600",
+      #sponge host
+      grepl("Porifera", name) ~ "MICRONT:03020700",
+      #other animal hosts
+      grepl("Metazoa", name) ~ "MICRONT:03020000",
+      #add plant hosts
+      grepl("Viridiplantae", name) ~ "MICRONT:03010000",
+      #handle artificial samples and controls
+      host_tax_id == 1235509 ~ "MICRONT:04010000",
+      host_tax_id == 2582415 ~ "MICRONT:04010200"
+    )
+  ) %>%
+  filter(!is.na(add.host_tax_id)) %>%
+  select(-n) %>%
+  ungroup()
+```
+
+Prepare per-sample `host_tax_id` and `microntology` mappings.
+
+```{r}
+tmp.host_tax_id.per_sample <- collect.host_tax_id %>%
+  left_join(map.host_tax_id, by = "host_tax_id") %>%
+  rename(host_classification = name)
+
+map.host_tax_id.per_sample <- bind_rows(
+  tmp.host_tax_id.per_sample %>%
+    filter(!is.na(metalog_sample_id)) %>%
+    left_join(
+      dat.sample.spire.master %>%
+        select(sample_id, metalog_sample_id) %>%
+        filter(!is.na(metalog_sample_id)),
+      by = "metalog_sample_id"
+    ),
+  tmp.host_tax_id.per_sample %>%
+    filter(is.na(metalog_sample_id)) %>%
+    left_join(
+      dat.sample.spire.master %>%
+        select(sample_id, ena_ers_sample_id) %>%
+        filter(!is.na(ena_ers_sample_id)),
+      by = "ena_ers_sample_id"
+    )
+) %>%
+  filter(!is.na(sample_id))
+```
+
+## Further process pre-harmonized metalog data
+
+Assign 'artificial' samples.
+
+```{r}
+map.metalog.artificial <- tmp.metalog.master %>%
+  mutate(
+    add.artifial = case_when(
+      artificial == "mesocosm" ~ "MICRONT:04010300",
+      artificial == "negative control" ~ "MICRONT:04010200",
+      artificial == "mock" ~ "MICRONT:04010100",
+      artificial == "paleosample" ~ "MICRONT:09090100",
+      artificial %in% c("cultivation", "enrichment", "spike-in", "sorted cells") ~ "MICRONT:04010000"
+    )
+  ) %>%
+  select(metalog_sample_id, artificial, add.artifial) %>%
+  filter(!is.na(add.artifial))
+```
+
+Human samples: gather information on age groups.
+
+```{r}
+map.metalog.age_group <- tmp.metalog.human %>%
+  mutate(
+    add.age_group = case_when(
+      #elderly subjects
+      age_years >= 65 ~ "MICRONT:09020105",
+      age_range %in% c(
+        "65 to 70",
+        "64 to 82",
+        "65 to 70",
+        "69 to 99",
+        "70 to 75",
+        "70 to 79",
+        "75 to 80",
+        "80 to 85",
+        "80 to 89",
+        "85 to 90",
+        "90 to 95",
+        "90 to 99",
+        "over 100",
+        "elderly",
+        "over 65",
+        "over 70",
+        "100 to 109"
+      ) ~ "MICRONT:09020105",
+      #infants
+      age_category == "baby" ~ "MICRONT:09020101",
+      age_years <= 2 ~ "MICRONT:09020101",
+      #children
+      age_category == "child" ~ "MICRONT:09020102",
+      age_years > 2 & age_years <= 10 ~ "MICRONT:09020102",
+      #adolescents
+      age_category == "adolescent" ~ "MICRONT:09020103",
+      age_years > 10 & age_years < 18 ~ "MICRONT:09020103",
+      #adults
+      age_years > 18 & age_years < 65 ~ "MICRONT:09020104",
+      age_category == "adult" ~ "MICRONT:09020104",
+      #resolve complex cases with multiple mappings
+      age_category == "baby, child" ~ "MICRONT:09020101;MICRONT:09020102",
+      age_category == "baby, child, adolescent" ~ "MICRONT:09020101;MICRONT:09020102;MICRONT:09020103",
+      age_category == "child, adolescent" ~ "MICRONT:09020102;MICRONT:09020103",
+      age_range %in% c(
+        "10 to 19",
+        "11 to 20",
+        "13 to 41",
+        "13 to 60",
+        "15 to 20"
+      ) ~ "MICRONT:09020103;MICRONT:09020104"
+    )
+  ) %>%
+  select(metalog_sample_id, age_years, age_range, age_category, add.age_group) %>%
+  filter(!is.na(add.age_group))
+```
+
+Human samples: birth term
+
+```{r}
+tmp.json_terms <- cbind(
+  tmp.metalog.human %>% filter(!is.na(json_metadata)) %>% select(metalog_sample_id, study_code, subject_id, timepoint, subject_disease_status, sex, intervention),
+  tmp.metalog.human %>%
+    filter(!is.na(json_metadata)) %>%
+    pull(json_metadata) %>% tidyjson::spread_all() %>%
+    select(
+      sample_title, sample_description,
+      type_of_birth, gestational_state, birth_term_status, birth_gestational_age_weeks, birth_mode, gestational_age_weeks,
+      days_since_antibiotics, range_days_since_antibiotics, Drug_antibiotic_last3y, antibiotic,
+      lifestyle
+    )
+) %>%
+  select(- `..JSON`)
+
+map.metalog.birth_term <- tmp.json_terms %>%
+  #Get birth term
+  mutate(
+    add.birth_term = case_when(
+      birth_term_status %in% c("extremely preterm", "very preterm", "moderate preterm", "preterm", "late preterm") ~ "MICRONT:09020201",
+      birth_term_status %in% c("early term", "full term", "late term", "post-term") ~ "MICRONT:09020202",
+      gestational_age_weeks < 37 ~ "MICRONT:09020201",
+      gestational_age_weeks >= 37 ~ "MICRONT:09020202",
+      birth_gestational_age_weeks < 37 ~ "MICRONT:09020201",
+      birth_gestational_age_weeks >= 37 ~ "MICRONT:09020202"
+    )
+  ) %>%
+  select(metalog_sample_id, birth_term_status, add.birth_term) %>%
+  filter(!is.na(add.birth_term))
+```
+
+Human samples: non-industrialized and hunter-gatherer lifestyles. Note that this relies heavily on previous manual annotation (in `dat.microntology.existing`) and only adds annotations for newly included samples.
+
+```{r}
+#Extract info from JSON terms
+map.metalog.lifestyle.json <- tmp.json_terms %>%
+  filter(!is.na(lifestyle)) %>%
+  mutate(
+    add.metalog.lifestyle.json = case_when(
+      lifestyle %in% c("Hunter-gatherer", "traditional hunter-gatherers") ~ "MICRONT:09020403;MICRONT:09020402",
+      lifestyle %in% c("Agriculturalist", "Farmer", "Fisher", "rural agriculturalist", "rural agriculturalists") ~ "MICRONT:09020404;MICRONT:09020402;MICRONT:09020302",
+      grepl("urban", lifestyle) ~ "MICRONT:09020301"
+    )
+  ) %>%
+  select(metalog_sample_id, add.metalog.lifestyle.json) %>%
+  filter(!is.na(add.metalog.lifestyle.json))
+```
+
+Human samples: remaining JSON columns to pass on 'raw'.
+
+```{r}
+map.metalog.human.json <- tmp.json_terms %>%
+  select(metalog_sample_id, subject_id, timepoint, subject_disease_status, intervention) %>%
+  left_join(tmp.metalog.human %>% select(metalog_sample_id, geographic_location, sex))
+```
+
+Animal samples: JSON fields.
+
+```{r}
+tmp.json_terms.animal <- cbind(
+  tmp.metalog.animal %>% filter(!is.na(json_metadata)) %>% select(metalog_sample_id, study_code),
+  tmp.metalog.animal %>%
+    filter(!is.na(json_metadata)) %>%
+    pull(json_metadata) %>% tidyjson::spread_all() %>%
+    select(
+      sample_title, sample_description, captivity_status
+    )
+) %>%
+  select(- `..JSON`)
+```
+
+Animal samples: assign captivity status.
+
+```{r}
+map.metalog.captivity <- tmp.json_terms.animal %>%
+  filter(!is.na(captivity_status)) %>%
+  mutate(
+    add.metalog.captivity = case_when(
+      captivity_status == "wild" ~ "MICRONT:09040100",
+      captivity_status %in% c("captive", "captivity") ~ "MICRONT:09040200",
+      captivity_status == "domestic" ~ "MICRONT:09040300",
+      captivity_status == "pet" ~ "MICRONT:09040400"
+    )
+  ) %>%
+  select(metalog_sample_id, add.metalog.captivity)
+```
+
+Environmental and ocean samples: extract JSON terms and additional metadata.
+
+```{r}
+#JSON terms from environmental model
+tmp.json_terms.env <- cbind(
+  tmp.metalog.environmental %>% filter(!is.na(json_metadata)) %>% select(metalog_sample_id, study_code, longitude, latitude, depth_meters, elevation_meters),
+  tmp.metalog.environmental %>%
+    filter(!is.na(json_metadata)) %>%
+    pull(json_metadata) %>% tidyjson::spread_all() %>%
+    select(
+      sample_title, sample_description, isolation_source,
+      food_name, #done
+      water_depth_meters,
+      pH_range, ph_range, #done
+      temperature_range, #irrelevant
+      sulfate_mg_l, sulfate_uM,
+      nitrate_mg_l, nitrate_uM, total_nitrate,
+      nitrite_mg_l, nitrite_uM,
+      oxygen_mg_l, oxygen_uM, dissolved_oxygen_uM, #done
+      salinity, salinity_ppm, #done
+      dissolved_organic_carbon_uM
+    )
+) %>%
+  select(- `..JSON`)
+
+#Extra metadata from environmental model
+tmp.extra_terms.env <- cbind(
+  tmp.metalog.environmental %>% filter(!is.na(extra_metadata)) %>% select(metalog_sample_id, study_code),
+  tmp.metalog.environmental %>%
+    filter(!is.na(extra_metadata)) %>%
+    pull(extra_metadata) %>% tidyjson::spread_all() %>%
+    select(
+      sample_title, sample_description,
+      depth, depth_cm,
+      soil_classification, soil_type,
+      food_feature, food_material, #done
+      nitrate, nitrate_ug_N_kg, nitrate_ug_l, nitrate_mg_kg, no3, NO3, nitrate_concentration_mg_g, nitrate_nitrogen_mg_kg, nitrate_M, `NO3_mg_kg^-1`,
+      nitrite, nitrite_ug_N_kg, nitrite_ug_l,
+      salinity, Salinity_perc, salinity_PSU, Salinity_PSU, salinity_ppt, `Salinity_(ppt)`, salinity_parts_per_thousand, #done
+      dissolved_oxygen, rel_to_oxygen, relation_to_oxygen, `Dissolved_oxygen/DO`, dissolved_oxygen_mg_l, oxy_sat_pct, diss_oxy_mumolperkg, dissolved_oxygen_mg_per_l, `oxygen[mg_l]`, oxygen_sbe_ml_l, dissolved_oxygen_mg_L, #done
+      dissolved_organic_carbon_mg_l, dissolved_organic_carbon, Total_Organic_Carbon_mg_per_l, total_carbon, total_organic_carbon_mg_l, diss_org_carb_uM, dissolved_organic_carbon_ppm, total_organic_carbon_percent, diss_org_carb, total_organic_carbon_mg_g
+    )
+) %>%
+  select(- `..JSON`)
+```
+
+```{r}
+#JSON terms from ocean model
+tmp.json_terms.ocean <- cbind(
+  tmp.metalog.ocean %>% filter(!is.na(json_metadata)) %>% select(metalog_sample_id, study_code, longitude, latitude, depth_meters, salinity),
+  tmp.metalog.ocean %>%
+    filter(!is.na(json_metadata)) %>%
+    pull(json_metadata) %>% tidyjson::spread_all() %>%
+    select(
+      sample_title, sample_description,
+      nitrate_uM,
+      nitrite_uM,
+      oxygen_uM, #done
+      dissolved_organic_carbon_uM,
+      alkalinity
+    )
+) %>%
+  select(- `..JSON`)
+
+#Extra metadata from ocean model
+tmp.extra_terms.ocean <- cbind(
+  tmp.metalog.ocean %>% filter(!is.na(extra_metadata)) %>% select(metalog_sample_id, study_code),
+  tmp.metalog.ocean %>%
+    filter(!is.na(extra_metadata)) %>%
+    pull(extra_metadata) %>% tidyjson::spread_all() %>%
+    select(
+      sample_title, sample_description, isolation_source,
+      pH,
+      nitrate, `Concentration_of_dissolved_nitrate_[umol/kg]`, NO3_uM, nitrate_mM,
+      nitrite, `Concentration_of_dissolved_Nitrite_[umol/kg]`, NO2_uM, nitrite_mM,
+      nitrate_nitrite, nitrate_nitrite_bottle_uM, `Concentration_of_dissolved_nitrate_plus_nitrite_[umol/kg]`,
+      diss_oxygen, dissolved_oxygen, oxygen_umol_kg, `dissolved_oxygen_SENSOR_[umol/kg]`, dissolved_oxygen_umol_kg, Oxygen_mL_per_L, oxygen, oxygen_ml_l, dissolved_oxygen_uM_kg, Dissolved_Oxygen_at_depth_mg_per_liter, dissolved_oxygen_mmol_kg, #done
+      dissolved_organic_carbon_umol_kg,
+      `Temperature_from_CTD_sensor_in_the_ITS-90_convention`,
+      salinity, Salinity_psu, `Practical_salinity_from_CTD_sensor_on_the_PSS-1978_scale`, #done
+    )
+)  %>%
+  select(- `..JSON`)
+
+tmp.extra_terms.ocean %>%
+  summarise(across(sample_title:`Practical_salinity_from_CTD_sensor_on_the_PSS-1978_scale`, ~ sum(!is.na(.x))))
+```
+
+Environmental and ocean samples: temperature.
+
+```{r}
+map.metalog.temperature <- bind_rows(
+  tmp.metalog.environmental %>%
+    filter(!is.na(temperature)) %>%
+    select(metalog_sample_id, temperature),
+  tmp.metalog.ocean %>%
+    filter(!is.na(temperature)) %>%
+    select(metalog_sample_id, temperature)
+) %>%
+  mutate(
+    add.metalog.temperature = case_when(
+      temperature <= 7 ~ "MICRONT:09010201",
+      temperature < 20 ~ "MICRONT:09010202",
+      temperature < 45 ~ "MICRONT:09010203",
+      temperature < 65 ~ "MICRONT:09010204",
+      temperature >= 65 ~ "MICRONT:09010205"
+    )
+  ) %>%
+  filter(!is.na(add.metalog.temperature))
+```
+
+Environmental samples: ph values.
+
+```{r}
+map.metalog.ph <- tmp.metalog.environmental %>%
+  filter(!is.na(pH)) %>%
+  select(metalog_sample_id, ph = pH) %>%
+  #Add ocean data
+  bind_rows(
+    tmp.extra_terms.ocean %>%
+      select(metalog_sample_id, ph = pH) %>%
+      mutate(ph = as.numeric(ph)) %>%
+      filter(!is.na(ph))
+  ) %>%
+  mutate(
+    add.metalog.ph = case_when(
+      ph < 6 ~ "MICRONT:09010301",
+      ph <= 8 ~ "MICRONT:09010302",
+      ph > 8 ~ "MICRONT:09010303",
+    )
+  ) %>%
+  #Add more data points unless better annotations were already available
+  bind_rows(
+    tmp.json_terms.env %>%
+      select(metalog_sample_id, ph_range, pH_range) %>%
+      mutate(
+        add.metalog.ph = case_when(
+          ph_range == "approx. 7" ~ "MICRONT:09010302",
+          pH_range %in% c("5.31 to 5.49", "5.34 to 5.44") ~ "MICRONT:09010301",
+          pH_range %in% c("over 13") ~ "MICRONT:09010303",
+          !is.na(pH_range) ~ "MICRONT:09010302",
+        )
+      ) %>%
+      filter(!is.na(add.metalog.ph)) %>%
+      select(metalog_sample_id, add.metalog.ph) %>%
+      filter(!metalog_sample_id %in% (tmp.metalog.environmental %>% filter(!is.na(pH)) %>% pull(metalog_sample_id)))
+  )
+```
+
+Environmental samples: foods.
+
+```{r}
+map.metalog.food <- tmp.json_terms.env %>%
+  filter(!is.na(food_name)) %>%
+  select(metalog_sample_id, study_code, sample_title, sample_description, food_name) %>%
+  bind_rows(
+    tmp.extra_terms.env %>%
+      filter(!is.na(food_feature) | !is.na(food_material)) %>%
+      select(metalog_sample_id, study_code, food_feature, food_material)
+  ) %>%
+  mutate(
+    add.food = case_when(
+      grepl("kimchi", sample_description, ignore.case = T) |  grepl("kimchi", food_name, ignore.case = T) ~ "MICRONT:04060100",
+      grepl("kvass", food_name, ignore.case = T) ~ "MICRONT:04060100",
+      grepl("milk kefir", food_name, ignore.case = T) ~ "MICRONT:04060100;MICRONT:04060200",
+      grepl("brine", food_name, ignore.case = T) ~ "MICRONT:04060100;MICRONT:02040300",
+      study_code == "Leech_2020_fermented_food" ~ "MICRONT:04060100",
+      food_material == "fermented dairy food product [FOODON:00001053]" ~ "MICRONT:04060100;MICRONT:04060200"
+    )
+  ) %>%
+  select(metalog_sample_id, add.food)
+```
+
+Environmental and ocean samples: salinity.
+
+```{r}
+#First, convert salinity to common unit (PSU, eq ppt)
+#JSON env terms
+map.metalog.salinity <- tmp.json_terms.env %>%
+  select(metalog_sample_id, study_code, salinity, salinity_ppm) %>%
+  mutate(
+    salinity_psu = case_when(
+      !is.na(salinity_ppm) ~ 1000 * as.numeric(salinity_ppm),
+      !is.na(salinity) ~ as.numeric(salinity)
+    )
+  ) %>%
+  filter(!is.na(salinity_psu)) %>%
+  select(metalog_sample_id, study_code, salinity_psu) %>%
+  #Add terms from 'extra' env metadata
+  bind_rows(
+    tmp.extra_terms.env %>%
+      select(metalog_sample_id, study_code, salinity, Salinity_perc, salinity_PSU, Salinity_PSU, salinity_ppt, `Salinity_(ppt)`, salinity_parts_per_thousand) %>%
+      mutate(
+        salinity_psu = case_when(
+          !is.na(salinity) ~ as.numeric(salinity),
+          !is.na(salinity_PSU) ~ as.numeric(salinity_PSU),
+          !is.na(Salinity_PSU) ~ as.numeric(Salinity_PSU),
+          !is.na(salinity_ppt) ~ as.numeric(salinity_ppt),
+          !is.na(salinity_parts_per_thousand) ~ as.numeric(salinity_parts_per_thousand),
+          !is.na(`Salinity_(ppt)`) ~ as.numeric(`Salinity_(ppt)`),
+          !is.na(Salinity_perc) ~ 0.1 * as.numeric(Salinity_perc)
+        )
+      ) %>%
+      filter(!is.na(salinity_psu)) %>%
+      select(metalog_sample_id, study_code, salinity_psu)
+  ) %>%
+  #Add terms for ocean
+  bind_rows(
+    tmp.metalog.ocean %>%
+      filter(!is.na(salinity)) %>%
+      mutate(salinity_psu = salinity) %>%
+      select(metalog_sample_id, study_code, salinity_psu)
+  ) %>%
+  #Add terms for ocean (extra metadata)
+  bind_rows(
+    tmp.extra_terms.ocean %>%
+      mutate(
+        salinity_psu = case_when(
+          !is.na(salinity) ~ as.numeric(salinity),
+          !is.na(Salinity_psu) ~ as.numeric(Salinity_psu),
+          !is.na(`Practical_salinity_from_CTD_sensor_on_the_PSS-1978_scale`) ~ as.numeric(`Practical_salinity_from_CTD_sensor_on_the_PSS-1978_scale`)
+        )
+      ) %>%
+      filter(!is.na(salinity_psu)) %>%
+      select(metalog_sample_id, study_code, salinity_psu)
+  ) %>%
+  #Assign salinity categories based on harmonized values
+  mutate(
+    add.salinity = case_when(
+      salinity_psu < 0.5 ~ "MICRONT:09010101",
+      salinity_psu <= 30 ~ "MICRONT:09010102",
+      salinity_psu <= 50 ~ "MICRONT:09010103",
+      salinity_psu > 50 ~ "MICRONT:09010104"
+    )
+  )
+```
+
+Environmental and ocean samples: relation to oxygen.
+
+molar mass: 32g / mol
+1mg / L = 1 / 0.032 uM
+
+```{r}
+#Get data from JSON terms (env samples)
+map.metalog.oxygen <- tmp.json_terms.env %>%
+  select(metalog_sample_id, study_code, oxygen_mg_l, oxygen_uM, dissolved_oxygen_uM) %>%
+  mutate(
+    oxygen_uM = case_when(
+      #anoxic / anaerobic ranges
+      oxygen_uM %in% c("0-4", "-4") ~ 2,
+      oxygen_uM == "0-17" ~ 8.5,
+      !is.na(oxygen_uM) ~ is.numeric(oxygen_uM),
+      !is.na(dissolved_oxygen_uM) ~ as.numeric(dissolved_oxygen_uM),
+      #Convert mg per L
+      #=> divide by molar weight 32g / L
+      !is.na(oxygen_mg_l) ~ as.numeric(oxygen_mg_l) / 0.032
+    )
+  ) %>%
+  filter(!is.na(oxygen_uM)) %>%
+  select(metalog_sample_id, study_code, oxygen_uM) %>%
+  #Add terms from 'extra' metadata in env samples
+  bind_rows(
+    tmp.extra_terms.env %>%
+      select(metalog_sample_id, study_code, dissolved_oxygen, rel_to_oxygen, relation_to_oxygen, `Dissolved_oxygen/DO`, dissolved_oxygen_mg_l, oxy_sat_pct, diss_oxy_mumolperkg, dissolved_oxygen_mg_per_l, `oxygen[mg_l]`, oxygen_sbe_ml_l, dissolved_oxygen_mg_L) %>%
+      mutate(
+        oxygen_uM = case_when(
+          !is.na(dissolved_oxygen) ~ as.numeric(dissolved_oxygen),
+          !is.na(diss_oxy_mumolperkg) ~ as.numeric(diss_oxy_mumolperkg), #this takes care of "oxy_sat_pct" as well
+          !is.na(`Dissolved_oxygen/DO`) ~ as.numeric(`Dissolved_oxygen/DO`) / 0.032, #manually confirmed that Mosley_2022_aquifer is mg per L as per table S1
+          !is.na(dissolved_oxygen_mg_l) ~ as.numeric(dissolved_oxygen_mg_l) / 0.032,
+          !is.na(dissolved_oxygen_mg_per_l) ~ as.numeric(dissolved_oxygen_mg_per_l) / 0.032,
+          !is.na(dissolved_oxygen_mg_L) ~ as.numeric(dissolved_oxygen_mg_L) / 0.032,
+          !is.na(`oxygen[mg_l]`) ~ as.numeric(`oxygen[mg_l]`) / 0.032,
+          !is.na(oxygen_sbe_ml_l) ~ as.numeric(oxygen_sbe_ml_l) / 0.032 #SBE is just the sensor brand
+        )
+      ) %>%
+      filter(!is.na(oxygen_uM) | !is.na(rel_to_oxygen) | !is.na(relation_to_oxygen)) %>%
+      select(metalog_sample_id, study_code, oxygen_uM, rel_to_oxygen, relation_to_oxygen)
+  ) %>%
+  #Add data from JSON terms (ocean samples)
+  bind_rows(
+    tmp.json_terms.ocean %>%
+      select(metalog_sample_id, study_code, oxygen_uM) %>%
+      filter(!is.na(oxygen_uM)) %>%
+      mutate(oxygen_uM = as.numeric(oxygen_uM))
+  ) %>%
+  #Add data from extra terms (ocean samples)
+  bind_rows(
+    tmp.extra_terms.ocean %>%
+      select(metalog_sample_id, study_code, diss_oxygen, dissolved_oxygen, oxygen_umol_kg, `dissolved_oxygen_SENSOR_[umol/kg]`, dissolved_oxygen_umol_kg, Oxygen_mL_per_L, oxygen_ml_l, dissolved_oxygen_uM_kg, Dissolved_Oxygen_at_depth_mg_per_liter, dissolved_oxygen_mmol_kg) %>%
+      mutate(
+        oxygen_uM = case_when(
+          !is.na(diss_oxygen) ~ as.numeric(diss_oxygen),
+          !is.na(dissolved_oxygen) & study_code == "Haroon_2016_Red_Sea" ~ as.numeric(dissolved_oxygen) / 0.032, #for this study, data is (most likely) in mg per L
+          !is.na(dissolved_oxygen) ~ as.numeric(dissolved_oxygen),
+          !is.na(oxygen_umol_kg) ~ as.numeric(oxygen_umol_kg),
+          !is.na(dissolved_oxygen_umol_kg) ~ as.numeric(dissolved_oxygen_umol_kg), #this appears to be redundant with dissolved_oxygen_SENSOR_ from Biller_2018_GEOTRACES_marine_pelagic
+          !is.na(`dissolved_oxygen_SENSOR_[umol/kg]`) ~ as.numeric(`dissolved_oxygen_SENSOR_[umol/kg]`),
+          !is.na(dissolved_oxygen_uM_kg) ~ as.numeric(dissolved_oxygen_uM_kg),
+          !is.na(dissolved_oxygen_mmol_kg) ~ 1000 * as.numeric(dissolved_oxygen_mmol_kg),
+          !is.na(Oxygen_mL_per_L) ~ as.numeric(Oxygen_mL_per_L) / 0.032,
+          !is.na(oxygen_ml_l) ~ as.numeric(oxygen_ml_l) / 0.032,
+          !is.na(Dissolved_Oxygen_at_depth_mg_per_liter) ~ as.numeric(Dissolved_Oxygen_at_depth_mg_per_liter) / 0.032
+        )
+      ) %>%
+      filter(!is.na(oxygen_uM)) %>%
+      select(metalog_sample_id, study_code, oxygen_uM)
+  ) %>%
+  mutate(
+    add.oxygen = case_when(
+      #Oxic / aerobic: >= 4mg/L, eq 125 uM
+      oxygen_uM >= 125 ~ "MICRONT:09010401",
+      #Hypoxic / microaerobic: 0.5-4mg/L
+      oxygen_uM >= 15.625 ~ "MICRONT:09010402",
+      #Anoxic / anaerobic: <0.5 mg/L, eq <15.625 uM
+      oxygen_uM < 15.625 ~ "MICRONT:09010403",
+      #Additional manual annotations
+      rel_to_oxygen == "aerobe" ~ "MICRONT:09010401",
+      rel_to_oxygen == "anaerobe" ~ "MICRONT:09010402",
+      relation_to_oxygen == "aerobe" ~ "MICRONT:09010401",
+      relation_to_oxygen == "anaerobe" ~ "MICRONT:09010402"
+    )
+  ) %>%
+  select(metalog_sample_id, oxygen_uM, add.oxygen)
+```
+
+Environmental and ocean samples: depth.
+**Note**: depth values recorded in `tmp.json_terms.ocean` overlap with those in `metalog` ocean master table; additional data in JSON is for sediments, so not used to annotate as "pelagic".
+
+```{r}
+tmp.map.metalog.depth <- tmp.metalog.ocean %>%
+  filter(!is.na(depth_meters)) %>%
+  filter(depth_meters != "unknown") %>%
+  filter(!grepl("sediment", environment_material) & !grepl("sediment", environment_feature)) %>%
+  mutate(depth_numeric = as.numeric(depth_meters)) %>%
+  mutate(
+    add.depth = case_when(
+      #Epipelagic ranges
+      depth_meters %in% c(
+        "1-2",
+        "0.8-5",
+        "20-180",
+        "5-20",
+        "13-17",
+        "10-100",
+        "0-100",
+        "5-160",
+        "5-7"
+      ) ~ "MICRONT:02080201",
+      #Broader pelagic ranges
+      depth_meters %in% c(
+        "180-2000",
+        "0-500"
+      ) ~ "MICRONT:02080200",
+      #Special case of annotated coral reef
+      depth_meters == "within 30 cm of the reef surface" ~ "MICRONT:02080201;MICRONT:02080300",
+      #Assign based on numeric depth annotations
+      depth_numeric <= 200 ~ "MICRONT:02080201",
+      depth_numeric <= 1000 ~ "MICRONT:02080202",
+      depth_numeric <= 2500 ~ "MICRONT:02080203",
+      depth_numeric <= 6000 ~ "MICRONT:02080204",
+      depth_numeric > 6000 ~ "MICRONT:02080205"
+    )
+  ) %>%
+  select(metalog_sample_id, depth_meters.numeric = depth_numeric, add.depth)
+
+map.metalog.depth <- bind_rows(
+  tmp.map.metalog.depth,
+  tmp.json_terms.ocean %>%
+    filter(!is.na(depth_meters)) %>%
+    filter(!metalog_sample_id %in% tmp.map.metalog.depth$metalog_sample_id) %>%
+    filter(depth_meters != "unknown") %>%
+    mutate(depth_meters.numeric = as.numeric(depth_meters)) %>%
+    select(metalog_sample_id, depth_meters.numeric)
+  )
+```
+
+## Add in annotations from metalog and ENA
+
+Go through several types of information from the various `metalog` tables and assign `microntology` IDs accordingly.
+
+```{r}
+tmp.spire.annotated <- dat.sample.spire.master %>%
+  select(sample_id:ena_project_id) %>%
+  #Add existing microntology terms
+  left_join(
+    dat.microntology.existing %>%
+      select(sample_id, add.existing = id),
+    by = "sample_id"
+  ) %>%
+  #Add pre-annotated microntology terms
+  left_join(dat.microntology.draft %>% rename(add.draft = id), by = "ena_project_id") %>%
+  #Add further pre-annotated per-sample terms
+  left_join(tmp.microntology.manual.by_sample %>% select(ena_ers_sample_id, add.by_sample = microntology), by = "ena_ers_sample_id") %>%
+  #############################################################
+  #Add info from metalog
+  #############################################################
+  #Get metalog master table
+  left_join(
+    tmp.metalog.master %>%
+      select(
+        metalog_sample_id,
+        sample_alias,
+        pmid, doi,
+        longitude, latitude,
+        geographic_location, location_resolution,
+        environment_biome, environment_feature, environment_material,
+        tax_id, metalog_sample_type
+      ),
+    by = "metalog_sample_id"
+  ) %>%
+  #Add microntology terms based on sample type in `metalog`
+  mutate(
+    add.metalog.type = case_when(
+      metalog_sample_type == "HumanSample" ~ "MICRONT:03020111",
+      metalog_sample_type == "AnimalSample" ~ "MICRONT:03020000",
+      metalog_sample_type == "OceanSample" ~ "MICRONT:02020000"
+    )
+  ) %>%
+  #Add microntology terms based on `environment_material` and `_feature` in `metalog`
+  left_join(
+    map.env_material.microntology %>%
+      select(add.metalog.env_material = microntology, environment_material = envo),
+    by = "environment_material"
+  ) %>%
+  left_join(
+    bind_rows(map.env_feature.microntology, map.env_material.microntology) %>%
+      select(add.metalog.env_feature = microntology, environment_feature = envo),
+    by = "environment_feature"
+  ) %>%
+  #Add terms based on host_tax_id
+  left_join(map.host_tax_id.per_sample %>% select(sample_id, host_tax_id, host_classification, add.host_tax_id), by = "sample_id") %>%
+  #Add artificial samples
+  left_join(map.metalog.artificial, by = "metalog_sample_id") %>%
+  #Add subject age group
+  left_join(map.metalog.age_group, by = "metalog_sample_id") %>%
+  #Add birth term
+  left_join(map.metalog.birth_term, by = "metalog_sample_id") %>%
+  #Add human host lifestyle
+  left_join(map.metalog.lifestyle.json, by = "metalog_sample_id") %>%
+  #Add additional human data columns
+  left_join(map.metalog.human.json %>% select(-geographic_location), by = "metalog_sample_id") %>%
+  #Add captivity status
+  left_join(map.metalog.captivity, by = "metalog_sample_id") %>%
+  #Add temperature
+  left_join(map.metalog.temperature, by = "metalog_sample_id") %>%
+  #Add ph
+  left_join(map.metalog.ph, by = "metalog_sample_id") %>%
+  #Add food annotations
+  left_join(map.metalog.food, by = "metalog_sample_id") %>%
+  #Add salinity data
+  left_join(map.metalog.salinity %>% select(metalog_sample_id, salinity_psu, add.salinity), by = "metalog_sample_id") %>%
+  #Add relation to oxygen
+  left_join(map.metalog.oxygen, by = "metalog_sample_id") %>%
+  #Add oceanic depth data
+  left_join(map.metalog.depth, by = "metalog_sample_id") %>%
+  #############################################################
+  #Add info from ENA
+  #############################################################
+  #Add general ENA data
+  left_join(
+    map.ena.per_sample %>%
+      select(
+        ena_ers_sample_id,
+        ena.environment_material = environment_material,
+        ena.environment_feature = environment_feature,
+        ena.isolation.source = isolation_source,
+        ena.ph = ph.clean,
+        add.ena.env_material, add.ena.env_feature, add.ena.scientific_name, add.ena.isolation_source, add.ph
+      ),
+    by = "ena_ers_sample_id"
+  ) %>%
+  #Fix some wrong exclusions manually
+  mutate(
+    add.ena.scientific_name = case_when(
+      #Samples in Coelho_2018_dog are misannotated as "bacterium"
+      study_name == "Coelho_2018_dog" ~ "MICRONT:03020131;MICRONT:03030141",
+      #Keller_2019_ancient_dental_calculus are annotated as Y pestis
+      study_name == "Keller_2019_ancient_dental_calculus" ~ "MICRONT:03030112;MICRONT:03020111;MICRONT:09020402",
+      #Don't exclude two samples from Wrighton_2012_aquifer
+      study_name == "Wrighton_2012_aquifer" ~ "MICRONT:02070100",
+      #Samples in Zhang_2023_constipation are mis-annotated as "Bifidobacterium" bc that was part of the probiotic used in the study
+      study_name == "Zhang_2023_constipation" ~ "MICRONT:03030141;MICRONT:03020111;MICRONT:09020401;MICRONT:09020301",
+      #Samples in Wu_2023_tuberculosis are mis-annotated as isolates (?)
+      study_name == "Wu_2023_tuberculosis" ~ "MICRONT:03030141;MICRONT:03020111;MICRONT:09020104;MICRONT:09020401",
+      #Samples in Ma_2022_allergy_probiotic are mis-annotated as isolates (?)
+      study_name == "Ma_2022_allergy_probiotic" ~ "MICRONT:03030141;MICRONT:03020111;MICRONT:09020104;MICRONT:09020401",
+      #Yu_2021_sediment are enrichment / single cell, so flag accordingly
+      study_name == "Yu_2021_sediment" ~ "MICRONT:04010000",
+      #Missing annotation for "no_metadata/PRJNA629845" => these are lakes
+      study_name == "no_metadata/PRJNA629845" ~ "MICRONT:02010100",
+      T ~ add.ena.scientific_name
+    )
+  )
+```
+
+Refine and pull annotations.
+
+```{r}
+drop.samples <- tmp.spire.annotated %>%
+  filter(study_name == "Aggarwala_2020_FMT_RCDI" & host_tax_id == "10090") %>%
+  pull(sample_id)
+
+#Get list of terms that are "not for annotation" (and only placeholder classes for term hierarchy)
+drop.placeholder_terms <- c(
+  "MICRONT:09000000",
+  "MICRONT:09010100",
+  "MICRONT:09010200",
+  "MICRONT:09010300",
+  "MICRONT:09010400",
+  "MICRONT:09040000",
+  "MICRONT:09020100",
+  "MICRONT:09020200",
+  "MICRONT:09020300",
+  "MICRONT:09020400"
+)
+
+dat.spire.annot.microntology <- tmp.spire.annotated %>%
+  filter(!sample_id %in% drop.samples) %>%
+  #Unite annotation columns
+  tidyr::unite(starts_with("add"), col = "add.terms", sep = ";", na.rm = TRUE) %>%
+  #Remove columns earmarked for exclusion
+  filter(!grepl("EXCLUDE", add.terms)) %>%
+  #Remove all "mock community" samples
+  filter(!grepl("MICRONT:04010100", add.terms)) %>%
+  #head(20) %>%
+  #Split columns, remove redundant terms
+  select(sample_id, add.terms) %>%
+  separate_rows(add.terms, sep = ";") %>%
+  distinct() %>%
+  #Remove placeholder terms not intended for annotation
+  filter(!add.terms %in% drop.placeholder_terms) %>%
+  #Pull microntology terms from hierarchy and associations
+  left_join(
+    dat.microntology.terms.raw %>%
+      select(id, id_hierarchy, crosslink_term),
+    by = c("add.terms" = "id")
+  ) %>%
+  #Re-join and re-split, filter out redundant terms (again)
+  tidyr::unite(add.terms:crosslink_term, col = "add.terms.pulled", sep = ";", na.rm = TRUE) %>%
+  separate_rows(add.terms.pulled, sep = ";") %>%
+  distinct() %>%
+  #Remove placeholder terms not intended for annotation (again)
+  filter(!add.terms.pulled %in% drop.placeholder_terms) %>%
+  #Re-join
+  group_by(sample_id) %>%
+  summarise(microntology = paste(add.terms.pulled, collapse = ";"))
+```
+
+Get additional consolidated metadata for SPIRE samples.
+
+```{r}
+drop.samples <- tmp.spire.annotated %>%
+  filter(study_name == "Aggarwala_2020_FMT_RCDI" & host_tax_id == "10090") %>%
+  pull(sample_id)
+
+dat.sample.spire.annot <- tmp.spire.annotated %>%
+  #Add exclusion criterion here (temporary before update)
+  filter(! sample_id %in% drop.samples) %>%
+  filter(sample_id %in% dat.spire.annot.microntology$sample_id) %>%
+  select(! starts_with("add")) %>%
+  distinct() %>%
+  group_by(sample_id) %>%
+  slice_sample(n = 1) %>%
+  ungroup() %>%
+  left_join(dat.sample.spire.master %>% select(sample_id, in_v1:read_count.host_removed))
+```
+
+## Pre-define sample hierarchies based on `microntology` and additional annotations
+
+`microntology` annotations are based on a multi-tagging system: each sample can have multiple tags, some of which can be conflicting if considered in isolation. For example, a `wetland` sample will be annotated as both `terrestrial` and `aquatic` - the idea is that depending on query / applied filters, it would be caught under each umbrella.
+
+However, for many analyses a fully non-redundant classification for each sample is required. We pre-annotate this into several hierarchical levels (`h1`, `h2`, etc with increasing resolution), based on `microntology` terms and additional annotations. Categories are data-driven, i.e. for habitats with more data (such as human gut), a higher resolution is possible.
+
+```{r}
+#Preprocess `microntology` data for convenience
+tmp.for_annot <- dat.spire.annot.microntology %>%
+  mutate(microntology = str_remove_all(microntology, "ICRONT:")) %>%
+  separate_rows(microntology, sep = ";") %>%
+  left_join(
+    dat.sample.spire.annot %>%
+      select(sample_id, sample_name, ena_ers_sample_id, study_name, ena_project_id, artificial, subject_id:intervention),
+    by = "sample_id"
+  ) %>%
+  mutate(microntology = ifelse(microntology == "", "unclassified", microntology)) %>%
+  mutate(dummy = T) %>%
+  pivot_wider(names_from = microntology, values_from = dummy, values_fill = F)
+
+```
+
+Assign `h1`.
+
+```{r}
+dat.h1 <- tmp.for_annot %>%
+  mutate(
+    h1 = case_when(
+      #Air samples take priority
+      M05000000 ~ "air",
+      #Host-associated samples
+      #Luiken_2020_farmdust is farm dust samples => agricultural
+      study_name == "Luiken_2020_farmdust" ~ "anthropogenic",
+      #Anaerobic digester samples from Ma_2021_anaerobic_digester are anthropogenic
+      study_name == "Ma_2021_anaerobic_digester" ~ "anthropogenic",
+      #Disambiguate Chopyk_2020_pond
+      study_name == "Chopyk_2020_pond" & M04030000 ~ "anthropogenic", #these are wastewater samples
+      study_name == "Chopyk_2020_pond" & M02000000 ~ "aquatic", #these are freshwater samples
+      study_name == "Chopyk_2020_pond" & M01010000 ~ "terrestrial", #these are soil samples
+      #Food samples are to be put in food category
+      M04060000 ~ "anthropogenic",
+      #Resolve major host categories
+      M03010000 ~ "plant host",
+      M03020000 ~ "animal host",
+      M03000000 ~ "host (other)",
+      #Anthropogenic samples
+      #Daley_2018_subsurface is shale from deep deposits, so it goes under terrestrial:subsurface
+      study_name == "Daley_2018_subsurface" ~ "terrestrial",
+      #JGI_freshwater_misc: these are buoys, so primarily aquatic
+      study_name == "JGI_freshwater_misc" ~ "aquatic",
+      #=> except (agricultural) soils
+      M04000000 & (!M01010000 & !M01020201 & !M01020300) ~ "anthropogenic",
+      #...but compost and waste are anthropogenic (and not terrestrial)
+      M04070000 ~ "anthropogenic",
+      #Terrestrial samples
+      #=> without groundwater (which pulls `terrestrial:subsurface` but should go into `aquatic`)
+      #=> but with wetlands
+      M01000000 & !M02070100 ~ "terrestrial",
+      #Aquatic samples
+      M02000000 ~ "aquatic",
+      #Flag unclassified
+      T ~ "unclassified"
+    )
+  ) %>%
+  select(sample_id, h1)
+```
+
+Assign `h2`.
+
+```{r}
+dat.h2 <- tmp.for_annot %>%
+  left_join(dat.h1, by = "sample_id") %>%
+  mutate(
+    h2 = case_when(
+      ##########################################################################
+      #Air samples are always easy...
+      h1 == "air" ~ h1,
+      ##########################################################################
+      #Anthropogenic sample types
+      #artificial samples
+      M04010000 ~ "artificial",
+      #waste materials (incl compost)
+      h1 == "anthropogenic" & M04070000 ~ "waste",
+      #built environment
+      h1 == "anthropogenic" & M04020000 ~ "built environment",
+      #wastewater
+      h1 == "anthropogenic" & M04030000 ~ "wastewater",
+      #food
+      h1 == "anthropogenic" & M04060000 ~ "food",
+      #agricultural samples
+      h1 == "anthropogenic" & M04040000 ~ "agriculture",
+      #mines
+      h1 == "anthropogenic" & M04050000 ~ "mine",
+      #other anthropogenic
+      h1 == "anthropogenic" ~ "anthropogenic (other)",
+      ##########################################################################
+      #Plant-associated samples
+      #rhizosphere
+      M03010100 ~ "rhizosphere",
+      #phyllosphere
+      M03010200 ~ "phyllosphere",
+      #other plant host
+      h1 == "plant host" ~ "plant host (other)",
+      ##########################################################################
+      #Animal-associated samples
+      #corals, sponges, etc go under "other" for now, irrespective of body site
+      M03020600 | M03020700 | M03020500 | M03020301 | M03020300 ~ "animal host (other)",
+      M03030120 ~ "digestive tract (other)", #to avoid sorting stomach into "intestine"
+      M03030110 ~ "oral",
+      M03030300 ~ "airways",
+      M03030400 ~ "skin",
+      M03030200 ~ "urogenital tract",
+      M03030500 ~ "bodily fluid",
+      M03030700 ~ "eye",
+      M03030130 ~ "rumen",
+      M03030140 ~ "intestine",
+      M03030100 ~ "digestive tract (other)",
+      h1 == "animal host" ~ "animal host (other)",
+      ##########################################################################
+      #Terrestrial samples
+      h1 == "terrestrial" & M01020600 ~ "permafrost",
+      h1 == "terrestrial" & M01020700 ~ "wetland",
+      h1 == "terrestrial" & M01040000 ~ "rock",
+      h1 == "terrestrial" & M01010000 ~ "soil",
+      h1 == "terrestrial" & M01030000 ~ "subsurface",
+      h1 == "terrestrial" ~ "terrestrial (other)",
+      ##########################################################################
+      #Aquatic samples
+      M02030000 ~ "spring",
+      M02070100 ~ "groundwater",
+      M02040200 & !M02020000 ~ "aquatic (other)", #saline, non-marine
+      M02040300 & !M02020000 ~ "aquatic (other)", #hypersaline
+      M02050000 ~ "aquatic (other)", #ice
+      M02010000 ~ "freshwater",
+      M02020000 ~ "marine",
+      h1 == "aquatic" ~ "aquatic (other)",
+      #Flag unclassified
+      T ~ "unclassified"
+    )
+  ) %>%
+  select(sample_id, h2)
+
+```
+
+Assign `h3`.
+
+```{r}
+dat.h3 <- tmp.for_annot %>%
+  left_join(dat.h1, by = "sample_id") %>%
+  left_join(dat.h2, by = "sample_id") %>%
+  mutate(
+    h3 = case_when(
+      ##########################################################################
+      #Air samples are always easy...
+      h1 == "air" ~ h1,
+      ##########################################################################
+      #Anthropogenic sample types
+      #artificial samples
+      h2 == "artificial" & M04010200 ~ "negative control",
+      h2 == "artificial" & M04010300 ~ "controlled environment",
+      h2 == "artificial" ~ "artificial (other)",
+      #anthropogenic samples without further disambiguation
+      h1 == "anthropogenic" & h2 %in% c("mine", "built environment") ~ h2,
+      #waste & compost
+      h2 == "waste" & M04070100 ~ "compost",
+      h2 == "waste" ~ "waste (other)",
+      #wastewater samples
+      h2 == "wastewater" & M04030100 ~ "sewage",
+      h2 == "wastewater" & M04030200 ~ "sludge",
+      h2 == "wastewater" ~ "wastewater (other)",
+      #food samples
+      h2 == "food" & M04060200 ~ "dairy product",
+      h2 == "food" & M04060300 ~ "meat product",
+      h2 == "food" ~ "food (other)",
+      #agricultural samples
+      h2 == "agriculture" & M04040200 ~ "manure",
+      h2 == "agriculture" ~ "agriculture (other)",
+      #other
+      h2 == "anthropogenic (other)" ~ h2,
+      ##########################################################################
+      #Plant-associated samples
+      #=> pass through h2
+      h1 == "plant host" ~ h2,
+      ##########################################################################
+      #Animal-associated samples
+      M03020600 ~ "coral host",
+      M03020700 ~ "sponge host",
+      M03020500 ~ "mollusc host",
+      M03020301 ~ "tick host",
+      M03020300 ~ "insect host",
+      M03020400 & M03030140 ~ "fish gut",
+      M03020400 ~ "fish host (other)",
+      #Disambiguate body-site specific samples
+      M03030201 ~ "vagina",
+      h2 == "urogenital tract" ~ "urogenital tract (other)",
+      h2 == "skin" & M03020111 ~ "human skin",
+      h2 == "skin" ~ "skin (other)",
+      h2 == "airways" & M03020111 ~ "human airways",
+      h2 == "airways" ~ "airways (other)",
+      h2 == "oral" & M03020111 ~ "human mouth",
+      h2 == "oral" ~ "mouth (other)",
+      h2 == "eye" ~ "eye",
+      h2 == "bodily fluid" & M03030501 ~ "breast milk",
+      h2 == "bodily fluid" & M03030502 ~ "blood",
+      h2 == "bodily fluid" & M03030503 ~ "cerebrospinal fluid",
+      h2 == "bodily fluid" ~ "bodily fluid (other)",
+      h2 == "rumen" ~ "rumen",
+      M03030120 ~ "stomach",
+      #Gut samples
+      h2 == "intestine" & M03020101 ~ "porcine gut",
+      h2 == "intestine" & M03020121 ~ "bovine gut",
+      h2 == "intestine" & M03020122 ~ "cervid gut",
+      h2 == "intestine" & M03020123 ~ "ovine gut",
+      h2 == "intestine" & M03020124 ~ "caprine gut",
+      #h2 == "intestine" & M03020120 ~ "ruminant gut (other)",
+      h2 == "intestine" & M03020131 ~ "canine gut",
+      h2 == "intestine" & M03020132 ~ "feline gut",
+      h2 == "intestine" & M03020133 ~ "ursine gut",
+      h2 == "intestine" & M03020130 ~ "carnivore gut (other)",
+      h2 == "intestine" & M03020210 ~ "avian gut",
+      h2 == "intestine" & M03020200 ~ "reptilian gut (other)",
+      h2 == "intestine" & M03020800 ~ "amphibian gut",
+      h2 == "intestine" & M03020110 & !M03020111 ~ "non-human primate gut",
+      h2 == "intestine" & M03020111 ~ "human gut",
+      h2 == "intestine" & M03020100 ~ "mammalian gut (other)",
+      h2 == "intestine" ~ "animal gut (other)",
+      h2 %in% c("animal host (other)", "digestive tract (other)") ~ h2,
+      ##########################################################################
+      #Terrestrial samples
+      h2 %in% c("permafrost", "rock", "subsurface") ~ h2,
+      #Wetlands
+      h2 == "wetland" & M01020701 ~ "salt marsh",
+      h2 == "wetland" & M01020702 ~ "mangrove",
+      h2 == "wetland" & M01020703 ~ "peatland",
+      h2 == "wetland" ~ "wetland (other)",
+      #Soils
+      h2 == "soil" & M01020200 ~ "grassland soil",
+      h2 == "soil" & M01020400 ~ "forest soil",
+      h2 == "soil" & M01020100 ~ "desert soil",
+      h2 == "soil" & M01020500 ~ "tundra soil",
+      h2 == "soil" & (M01020300 | M04040100) ~ "agricultural soil",
+      h2 == "soil" ~ "soil (other)",
+      h2 == "terrestrial (other)" ~ h2,
+      ##########################################################################
+      #Aquatic samples
+      h2 == "spring" & M02030100 ~ "hot spring",
+      h2 == "spring" & M02030200 ~ "hydrothermal vent",
+      h2 == "spring" & M02030300 ~ "seep",
+      h2 == "spring" ~ "spring (other)",
+      h2 == "groundwater" ~ h2,
+      h1 == "aquatic" & M02050000 ~ "ice",
+      #h1 == "aquatic" & M02040300 & !M02020000 ~ "hypersaline water",
+      h1 == "aquatic" & M02040200 & !M02020000 ~ "saline water (non-marine)",
+      #Freshwater samples
+      h2 == "freshwater" & M02010101 ~ "lake sediment",
+      h2 == "freshwater" & M02010100 & M02070200 ~ "lake sediment",
+      h2 == "freshwater" & M02010201 ~ "stream sediment",
+      h2 == "freshwater" & M02010200 & M02070200 ~ "stream sediment",
+      h2 == "freshwater" & M02070200 ~ "freshwater sediment (other)",
+      h2 == "freshwater" & M02010100 ~ "freshwater lake",
+      h2 == "freshwater" & M02010200 ~ "freshwater stream",
+      h2 == "freshwater" ~ "freshwater (other)",
+      #Marine samples
+      h2 == "marine" & M02070200 ~ "marine sediment",
+      h2 == "marine" ~ "marine (other)",
+      #Other aquatic
+      h1 == "aquatic" ~ "aquatic (other)",
+      #Flag unclassified
+      T ~ "unclassified"
+    )
+  ) %>%
+  select(sample_id, h3)
+```
+
+Assign `h4`.
+
+```{r}
+dat.h4 <- tmp.for_annot %>%
+  left_join(dat.h1, by = "sample_id") %>%
+  left_join(dat.h2, by = "sample_id") %>%
+  left_join(dat.h3, by = "sample_id") %>%
+  mutate(
+    h4 = case_when(
+      ##########################################################################
+      #Pass through most categories
+      h1 == "air" ~ h1,
+      h1 == "plant host" ~ h2,
+      h1 == "terrestrial" ~ h3,
+      h1 == "aquatic" ~ h3,
+      h2 == "artificial" ~ h3,
+      h1 == "anthropogenic" & h2 %in% c("mine", "built environment", "wastewater", "agriculture", "waste") ~ h3,
+      h3 == "anthropogenic (other)" ~ h3,
+      h1 == "animal host" & h3 != "human gut" ~ h3,
+      #Food samples
+      h2 == "food" & M04060100 & M04060200 ~ "fermented dairy product",
+      h2 == "food" & M04060100 & M04060300 ~ "fermented meat product",
+      h2 == "food" & M04060200 ~ "dairy product (other)",
+      h2 == "food" & M04060300 ~ "meat product (other)",
+      h2 == "food" & M04060100 ~ "fermented food (other)",
+      h2 == "food" ~ "food (other)",
+      #Human gut samples
+      h3 == "human gut" & M09020402 ~ "human gut (non-industr.)",
+      h3 == "human gut" & M09020101 ~ "human gut (infant)",
+      h3 == "human gut" & M09020102 ~ "human gut (child)",
+      h3 == "human gut" & M09020103 ~ "human gut (adolescent)",
+      h3 == "human gut" & M09020104 ~ "human gut (adult)",
+      h3 == "human gut" & M09020105 ~ "human gut (elderly)",
+      h3 == "human gut" ~ "human gut (other)",
+      T ~ "unclassified"
+    )
+  ) %>%
+  select(sample_id, h4)
+```
+
+## Run some basic checks
+
+Check an overview of assigned `microntology` terms and counts.
+
+```{r}
+dat.spire.annot.microntology %>%
+  separate_rows(microntology, sep = ";") %>%
+  group_by(microntology) %>%
+  tally() %>%
+  left_join(dat.microntology.terms.raw %>% select(id, display_term), by = c("microntology" = "id"))
+
+```
+
+```{r}
+dat.sample.spire <- dat.sample.spire.annot %>%
+  left_join(dat.h1, by = "sample_id") %>%
+  left_join(dat.h2, by = "sample_id") %>%
+  left_join(dat.h3, by = "sample_id") %>%
+  left_join(dat.h4, by = "sample_id")
+
+dat.sample.spire %>%
+  group_by(h1, h2, h3, h4) %>%
+  tally() 
+```
+
+## Store data
+
+Consolidate data.
+
+```{r}
+dat.microntology.terms <- dat.microntology.terms.raw %>%
+  select(id, category, term, id_hierarchy, crosslink_term, display_term, hex_colour, text_colour)
+
+dat.sample.microntology <- dat.spire.annot.microntology
+
+dat.sample.spire <- dat.sample.spire.annot %>%
+  left_join(dat.h1, by = "sample_id") %>%
+  left_join(dat.h2, by = "sample_id") %>%
+  left_join(dat.h3, by = "sample_id") %>%
+  left_join(dat.h4, by = "sample_id")
+```
+
+Export count table of hierarchical categories.
+
+```{r}
+dat.sample.spire %>%
+  group_by(h1, h2, h3, h4) %>%
+  tally() %>%
+  write_tsv("~/Desktop/spire2.sample_classification.tsv")
+```
+
+Export sample category annotations.
+
+```{r}
+dat.sample.spire %>%
+  select(sample_id, h1:h4) %>%
+  write_tsv("~/Desktop/spire.v_2_0.sample_classification.v_0_2.tsv")
+
+dat.sample.microntology %>%
+  left_join(dat.sample.spire %>% select(sample_id, sample_name, ena_ers_sample_id, study_name, ena_project_id), by = "sample_id") %>%
+  filter(!is.na(microntology)) %>%
+  filter(!study_name %in% c("trec")) %>%
+  filter(!grepl("internal", study_name)) %>%
+  select(-sample_id) %>%
+  arrange(ena_project_id, ena_ers_sample_id) %>%
+  relocate(ena_project_id, study_name, ena_ers_sample_id, sample_name, microntology) %>%
+  write_tsv("~/Desktop/ena_drop.v_2_0.microntology.v_1_0.annotations.v_0_2.tsv")
+```
+
+Export `microntology` data.
+
+```{r}
+write_tsv(dat.microntology.terms, file = "~/Desktop/microntology.v04.terms.tsv")
+write_tsv(dat.sample.microntology, file = "~/Desktop/spire.v_2_0.microntology.v_1_0.annotations.v_0_2.tsv")
+```
+
+Store `Rdata` files.
+
+```{r}
+save(dat.sample.spire, dat.sample.microntology, dat.microntology.terms, file = paste0(PARAM$folder.metadata, "dat.sample.spire2.20251204.Rdata"))
+```
+
+
+
+
+-----
+
+
