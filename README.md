@@ -19,6 +19,13 @@ This repository contains the main files required to browse and use `microntology
 * `micront.owl`. A *Web Ontology Language* format file describing and linking all terms and categories.
 * `microntology.terms.tsv`. An equivalent, human-readable `tsv` file reflecting `microntology` terms, categories, hierarchies and crosslinks.
 
+Moreover, it contains the `R` [code](https://github.com/grp-schmidt/microntology/blob/main/Rmd/annotate.microntology.Rmd) used to annotate public metagenomic samples with `microntology` terms.
+
+* Data sources. Annotations rely on manually curated contextual data available in [Metalog](https://metalog.embl.de), on submitted metadata at the European Nucleotide Archive and on manual curation of samples/studies.
+* The script collects information from various sources and integrates mappings to `microntology` terms into common tables.
+
+---
+
 The  `micron.owl` and terms tables are also available as stable release via Zenodo:
 
 Fullam, A., Prasoodanan P K, V., & Schmidt, T. S. B. (2026). microntology: a controlled vocabulary to describe Earth's microbial habitats. (1.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.18162129
