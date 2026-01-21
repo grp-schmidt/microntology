@@ -1,0 +1,1 @@
+We welcome feedback, suggestions and contributions to `microntology`. Please use the `MICRONT` issue tracker (https://github.com/grp-schmidt/microntology/issues) or send an email to `sebastian {dot} schmidt {at} ucc {dot} ie`.
