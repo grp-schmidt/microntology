@@ -45,33 +45,33 @@ aquatic	MICRONT:02080205	aquatic:pelagic:hadal	hadal	MICRONT:02000000;MICRONT:02
 aquatic	MICRONT:02080300	aquatic:benthic	benthic	MICRONT:02000000	ENVO:01000024			#004151	
 aquatic	MICRONT:02090000	aquatic:paludal	paludal	MICRONT:02000000	ENVO:00000043		MICRONT:01020700;MICRONT:02060100	#097a92	
 host-associated	MICRONT:03000000	host-associated	host-associated					#c51b7d	
-host-associated	MICRONT:03010000	host-associated:plant host	plant host	MICRONT:03000000	ENVO:01001001	33090		#62BD69	tax ID points to "Viridiplantae"
+host-associated	MICRONT:03010000	host-associated:plant host	plant host	MICRONT:03000000	ENVO:01001001	33090		#62BD69	"tax ID points to ""Viridiplantae"""
 host-associated	MICRONT:03010100	host-associated:plant host:rhizosphere	rhizosphere	MICRONT:03000000;MICRONT:03010000	ENVO:00005801;PO:0009005			#30694B	
 host-associated	MICRONT:03010200	host-associated:plant host:phyllosphere	phyllosphere	MICRONT:03000000;MICRONT:03010000	PO:0006001			#4a7c59	
 host-associated	MICRONT:03010300	host-associated:plant host:plant litter	plant litter	MICRONT:03000000;MICRONT:03010000	ENVO:01000628			#708C50	
-host-associated	MICRONT:03020000	host-associated:animal host	animal host	MICRONT:03000000	ENVO:01001002	33208		#de77ae	tax ID for "Metazoa"
+host-associated	MICRONT:03020000	host-associated:animal host	animal host	MICRONT:03000000	ENVO:01001002	33208		#de77ae	"tax ID for ""Metazoa"""
 host-associated	MICRONT:03020100	host-associated:animal host:mammalian host	mammalian host	MICRONT:03000000;MICRONT:03020000		40674		#f1b6da	
-host-associated	MICRONT:03020101	host-associated:animal host:mammalian host:porcine host	porcine host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020100		9821		#fde0ef	tax ID for "Suidae"
+host-associated	MICRONT:03020101	host-associated:animal host:mammalian host:porcine host	porcine host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020100		9821		#fde0ef	"tax ID for ""Suidae"""
 host-associated	MICRONT:03020110	host-associated:animal host:mammalian host:primate host	primate host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020100		9443		#743b41	
 host-associated	MICRONT:03020111	host-associated:animal host:mammalian host:primate host:human host	human host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020100;MICRONT:03020110		9606		#9E1C60	
-host-associated	MICRONT:03020120	host-associated:animal host:mammalian host:ruminant host	ruminant host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020100		9845		#c8ccb0	tax ID for "Ruminantia"
-host-associated	MICRONT:03020121	host-associated:animal host:mammalian host:ruminant host:bovine host	bovine host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020100;MICRONT:03020120		27592		#A0522D	tax ID for "Bovinae"
-host-associated	MICRONT:03020122	host-associated:animal host:mammalian host:ruminant host:cervid host	cervid host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020100;MICRONT:03020120		9850		#c08552	tax ID for "Cervidae", i.e. deer
-host-associated	MICRONT:03020123	host-associated:animal host:mammalian host:ruminant host:ovine host	ovine host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020100;MICRONT:03020120		9935		#fbffdc	tax ID for genus "Ovis", i.e. sheep
-host-associated	MICRONT:03020124	host-associated:animal host:mammalian host:ruminant host:caprine host	caprine host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020100;MICRONT:03020120		9922		#d4d6c7	tax ID for genus "Capra", i.e. goats and ibex
-host-associated	MICRONT:03020130	host-associated:animal host:mammalian host:carnivore host	carnivore host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020100		33554		#ff7f7f	tax ID for "Carnivora"
-host-associated	MICRONT:03020131	host-associated:animal host:mammalian host:carnivore host:canine host	canine host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020100;MICRONT:03020130		9608		#e5cd6c	tax ID for "Canidae", i.e. dogs, wolfs, coyotes and foxes
-host-associated	MICRONT:03020132	host-associated:animal host:mammalian host:carnivore host:feline host	feline host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020100;MICRONT:03020130		9681		#B89B83	tax ID for "Felidae", i.e. cats and panthers
-host-associated	MICRONT:03020133	host-associated:animal host:mammalian host:carnivore host:ursine host	ursine host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020100;MICRONT:03020130		9632		#4d2b12	tax ID for "Ursidae", i.e. bears
-host-associated	MICRONT:03020200	host-associated:animal host:reptilian host	reptilian host	MICRONT:03000000;MICRONT:03020000		32561		#6fb17e	tax ID for "Sauria"; this includes birds
-host-associated	MICRONT:03020210	host-associated:animal host:reptilian host:avian host	avian host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020200		8782		#f5c501	tax ID for "Aves"
-host-associated	MICRONT:03020300	host-associated:animal host:insect host	insect host	MICRONT:03000000;MICRONT:03020000		50557		#725770	tax ID for "Insecta"
-host-associated	MICRONT:03020301	host-associated:animal host:tick host	tick host	MICRONT:03000000;MICRONT:03020000		6935	MICRONT:01000000	#504244	tax ID for "Ixodida"
-host-associated	MICRONT:03020400	host-associated:animal host:fish host	fish host	MICRONT:03000000;MICRONT:03020000		7898	MICRONT:02000000	#0143cd	tax ID for "Actinopterygii", i.e. ray-finned fishes
-host-associated	MICRONT:03020500	host-associated:animal host:mollusc host	mollusc host	MICRONT:03000000;MICRONT:03020000		6447		#847c80	tax ID for "Mollusca"
-host-associated	MICRONT:03020600	host-associated:animal host:coral host	coral host	MICRONT:03000000;MICRONT:03020000	ENVO:00000150	6101	MICRONT:02020000;MICRONT:02080300	#eae8e5	tax ID for "Anthozoa"
-host-associated	MICRONT:03020700	host-associated:animal host:sponge host	sponge host	MICRONT:03000000;MICRONT:03020000		6040	MICRONT:02020000;MICRONT:02080300	#eede19	tax ID for "Porifera"
-host-associated	MICRONT:03020800	host-associated:animal host:amphibian host	amphibian host	MICRONT:03000000;MICRONT:03020000		8292		#2E7D32	tax ID for "Amphibia"
+host-associated	MICRONT:03020120	host-associated:animal host:mammalian host:ruminant host	ruminant host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020100		9845		#c8ccb0	"tax ID for ""Ruminantia"""
+host-associated	MICRONT:03020121	host-associated:animal host:mammalian host:ruminant host:bovine host	bovine host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020100;MICRONT:03020120		27592		#A0522D	"tax ID for ""Bovinae"""
+host-associated	MICRONT:03020122	host-associated:animal host:mammalian host:ruminant host:cervid host	cervid host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020100;MICRONT:03020120		9850		#c08552	"tax ID for ""Cervidae"", i.e. deer"
+host-associated	MICRONT:03020123	host-associated:animal host:mammalian host:ruminant host:ovine host	ovine host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020100;MICRONT:03020120		9935		#fbffdc	"tax ID for genus ""Ovis"", i.e. sheep"
+host-associated	MICRONT:03020124	host-associated:animal host:mammalian host:ruminant host:caprine host	caprine host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020100;MICRONT:03020120		9922		#d4d6c7	"tax ID for genus ""Capra"", i.e. goats and ibex"
+host-associated	MICRONT:03020130	host-associated:animal host:mammalian host:carnivore host	carnivore host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020100		33554		#ff7f7f	"tax ID for ""Carnivora"""
+host-associated	MICRONT:03020131	host-associated:animal host:mammalian host:carnivore host:canine host	canine host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020100;MICRONT:03020130		9608		#e5cd6c	"tax ID for ""Canidae"", i.e. dogs, wolfs, coyotes and foxes"
+host-associated	MICRONT:03020132	host-associated:animal host:mammalian host:carnivore host:feline host	feline host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020100;MICRONT:03020130		9681		#B89B83	"tax ID for ""Felidae"", i.e. cats and panthers"
+host-associated	MICRONT:03020133	host-associated:animal host:mammalian host:carnivore host:ursine host	ursine host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020100;MICRONT:03020130		9632		#4d2b12	"tax ID for ""Ursidae"", i.e. bears"
+host-associated	MICRONT:03020200	host-associated:animal host:reptilian host	reptilian host	MICRONT:03000000;MICRONT:03020000		32561		#6fb17e	"tax ID for ""Sauria""; this includes birds"
+host-associated	MICRONT:03020210	host-associated:animal host:reptilian host:avian host	avian host	MICRONT:03000000;MICRONT:03020000;MICRONT:03020200		8782		#f5c501	"tax ID for ""Aves"""
+host-associated	MICRONT:03020300	host-associated:animal host:insect host	insect host	MICRONT:03000000;MICRONT:03020000		50557		#725770	"tax ID for ""Insecta"""
+host-associated	MICRONT:03020301	host-associated:animal host:tick host	tick host	MICRONT:03000000;MICRONT:03020000		6935	MICRONT:01000000	#504244	"tax ID for ""Ixodida"""
+host-associated	MICRONT:03020400	host-associated:animal host:fish host	fish host	MICRONT:03000000;MICRONT:03020000		7898	MICRONT:02000000	#0143cd	"tax ID for ""Actinopterygii"", i.e. ray-finned fishes"
+host-associated	MICRONT:03020500	host-associated:animal host:mollusc host	mollusc host	MICRONT:03000000;MICRONT:03020000		6447		#847c80	"tax ID for ""Mollusca"""
+host-associated	MICRONT:03020600	host-associated:animal host:coral host	coral host	MICRONT:03000000;MICRONT:03020000	ENVO:00000150	6101	MICRONT:02020000;MICRONT:02080300	#eae8e5	"tax ID for ""Anthozoa"""
+host-associated	MICRONT:03020700	host-associated:animal host:sponge host	sponge host	MICRONT:03000000;MICRONT:03020000		6040	MICRONT:02020000;MICRONT:02080300	#eede19	"tax ID for ""Porifera"""
+host-associated	MICRONT:03020800	host-associated:animal host:amphibian host	amphibian host	MICRONT:03000000;MICRONT:03020000		8292		#2E7D32	"tax ID for ""Amphibia"""
 host-associated	MICRONT:03030100	host-associated:animal host:digestive tract	digestive tract	MICRONT:03000000;MICRONT:03020000	ENVO:01001033;UBERON:0001555			#d6604d	
 host-associated	MICRONT:03030110	host-associated:animal host:digestive tract:mouth	mouth	MICRONT:03000000;MICRONT:03020000;MICRONT:03030100	ENVO:08000002;UBERON:0000165			#f4a582	
 host-associated	MICRONT:03030111	host-associated:animal host:digestive tract:mouth:saliva	saliva	MICRONT:03000000;MICRONT:03020000;MICRONT:03030100;MICRONT:03030110	ENVO:02000036;UBERON:0001836			#fddbc7	
@@ -85,7 +85,7 @@ host-associated	MICRONT:03030201	host-associated:animal host:urogenital tract:va
 host-associated	MICRONT:03030300	host-associated:animal host:airways	airways	MICRONT:03000000;MICRONT:03020000	UBERON:0001004			#e7d4e8	
 host-associated	MICRONT:03030400	host-associated:animal host:skin	skin	MICRONT:03000000;MICRONT:03020000	ENVO:2100003;UBERON:0002097			#9970ab	
 host-associated	MICRONT:03030500	host-associated:animal host:bodily fluid	bodily fluid	MICRONT:03000000;MICRONT:03020000	ENVO:02000019			#F2EAF3	
-host-associated	MICRONT:03030501	host-associated:animal host:bodily fluid:breast milk	breast milk	MICRONT:03000000;MICRONT:03020000;MICRONT:03030500	ENVO:02000031		MICRONT:03020100	#fdfff5	refers to breast milk only; note that milk as (processed) food stuff is annotated as "anthropogenic:food:dairy product"
+host-associated	MICRONT:03030501	host-associated:animal host:bodily fluid:breast milk	breast milk	MICRONT:03000000;MICRONT:03020000;MICRONT:03030500	ENVO:02000031		MICRONT:03020100	#fdfff5	"refers to breast milk only; note that milk as (processed) food stuff is annotated as ""anthropogenic:food:dairy product"""
 host-associated	MICRONT:03030502	host-associated:animal host:bodily fluid:blood	blood	MICRONT:03000000;MICRONT:03020000;MICRONT:03030500	ENVO:02000020			#880808	
 host-associated	MICRONT:03030503	host-associated:animal host:bodily fluid:cerebrospinal fluid	cerebrospinal fluid	MICRONT:03000000;MICRONT:03020000;MICRONT:03030500	ENVO:02000029			#A291A1	
 host-associated	MICRONT:03030600	host-associated:animal host:mucosa	mucosa	MICRONT:03000000;MICRONT:03020000	UBERON:0000344			#AE5654	
