@@ -18,6 +18,7 @@ This repository contains the main files required to browse and use `microntology
 
 * `micront.owl`. A *Web Ontology Language* format file describing and linking all terms and categories.
 * `microntology.terms.tsv`. An equivalent, human-readable `tsv` file reflecting `microntology` terms, categories, hierarchies and crosslinks.
+* `microntology.annotations.xlsx`. An xlsx file containing curated tables that map information from Metalog and ENA fields to `microntology` terms. This is used by the annotation script (see below).
 
 Moreover, it contains the `R` [code](https://github.com/grp-schmidt/microntology/blob/main/Rmd/annotate.microntology.Rmd) used to annotate public metagenomic samples with `microntology` terms.
 
