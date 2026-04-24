@@ -4,37 +4,57 @@
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
          xmlns:owl="http://www.w3.org/2002/07/owl#"
          xml:base="http://purl.obolibrary.org/obo/micront.owl"
-         xmlns="http://purl.obolibrary.org/obo/micront.owl#">
+         xmlns="http://purl.obolibrary.org/obo/micront.owl#"
+         xmlns:obo="http://purl.obolibrary.org/obo/"
+         xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+         xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
 
 <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/micront.owl"/>
 
 <owl:ObjectProperty rdf:about="#crosslinked_to"/>
 
+<owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000115"/>
+
+<owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#exactMatch"/>
+
+<owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasDbXref"/>
+
 <owl:Class rdf:about="#MICRONT_01000000">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">terrestrial</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000446</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat (biome or ecosystem) that is primarily situated on or influenced by a landmass.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00000446</skos:exactMatch>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01001790</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Terrestrial_ecosystem</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_01010000">
   <rdfs:subClassOf rdf:resource="#MICRONT_01000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">soil</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00001998</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A mixture of varying proportions of sand, silt, clay, organic material, minerals, (aequous) liquids and gases, supporting the life of macro- and microorganisms in terrestrial habitats</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00001998</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Soil</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_01020100">
   <rdfs:subClassOf rdf:resource="#MICRONT_01000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">arid</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000230</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000179</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000097</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A dry terrestrial habitat, characterized by low annual precipitation and/or high evaporation. Includes in particular desert areas.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000230</oboInOwl:hasDbXref>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000179</oboInOwl:hasDbXref>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00000097</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Aridity</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In MICRONT, this term is used as an additional qualifier for terrestrial habitats.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_01020200">
   <rdfs:subClassOf rdf:resource="#MICRONT_01000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">grassland</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000106</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000177</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A terrestrial ecosystem dominated by grasses.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00000106</oboInOwl:hasDbXref>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000177</oboInOwl:hasDbXref>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01001206</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Grassland</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_01020201">
@@ -46,7 +66,9 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pasture</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000266</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A grassland ecosystem primarly shaped by grazing livestock.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00000266</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Pasture</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_01020300">
@@ -58,27 +80,38 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cropland</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01001244</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A terrestrial ecosystem shaped by the (agricultural) cultivation of crops, including mechanical impacts such as active tilling.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01001244</skos:exactMatch>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000892</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Agricultural_land</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_01020400">
   <rdfs:subClassOf rdf:resource="#MICRONT_01000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">forest</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000111</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000174</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A terrestrial ecosystem dominated by a dense population of trees and/or shrubs.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00000111</oboInOwl:hasDbXref>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000174</oboInOwl:hasDbXref>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00000109</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Forest</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">includes woodland</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_01020500">
   <rdfs:subClassOf rdf:resource="#MICRONT_01000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tundra</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000180</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A cold and dry terrestrial ecosystem with low average temperatures, low precipitation (and/or high evaporation), dominated by low-growing vegetation (i.e., trees are moslty absent).</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01001370</skos:exactMatch>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000180</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Tundra</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_01020600">
   <rdfs:subClassOf rdf:resource="#MICRONT_01000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">permafrost</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000134</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A terrestrial habitat (soil or rock) with temperatures constantly remaining below freezing point.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00000134</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Permafrost</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_01020700">
@@ -96,7 +129,9 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wetland</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000043</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A terrestrial, semi-aquatic ecosystem that is usually inundated in gorund or surface water, including e.g. marshes and swamps.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01001209</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Wetland</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_01020701">
@@ -126,7 +161,9 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">salt marsh</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000054</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A wetland habitat with saline conditions, often located in coastal areas.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00000054</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Salt_marsh</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_01020702">
@@ -144,7 +181,9 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mangrove</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000181</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A coastal wetland habitat dominated by mangrove trees.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000181</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Mangrove</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_01020703">
@@ -162,24 +201,36 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">peatland</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000044</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A wetland ecosystem dominated by the accumulation of acidic peat,</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00000044</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Peatland</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_01030000">
   <rdfs:subClassOf rdf:resource="#MICRONT_01000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">subsurface</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A natural or anthropogenic subsurface habitat, including caves and mines, but also aquifers and geological features like (deep) deposits. Not strictly limited to landmass, but also includes features underneath lake/stream beds and below the ocean floor.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00002184</oboInOwl:hasDbXref>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">More inclusive definition than ENVO:00002184 (subsurface landform)</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_01040000">
   <rdfs:subClassOf rdf:resource="#MICRONT_01000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rock</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00001995</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A solid aggregation of minerals (and mineraloids), potentially supporting growth in epilithic (on the rock surface) or endolithic (within the rock) habitats.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00001995</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Rock_(geology)</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In MICRONT, this term is used as an additional qualifier for terrestrial habitats to both specify areas or ecosystems dominated by rocks, and/or to the environmental material itself (e.g., supporting epilithic or endolithic growth).</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02000000">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">aquatic</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00002030</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat (biome or ecosystem) that is primarily dominated by water.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00002030</oboInOwl:hasDbXref>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01001787</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Aquatic_ecosystem</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In MICRONT, this term is used both for aquatic habitats and as an additional qualifier e.g. for aquatic hosts (like fish) or habitats influenced by, but not primarily dominated by water, such as wetlands</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02010000">
@@ -191,8 +242,11 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fresh water</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000873</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">low salinity (&lt;0.5ppt)</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An aquatic ecosystem determined by fresh water, i.e. a water body of low salinity (&lt;0.5 ppt)</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00000873</skos:exactMatch>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01001789</oboInOwl:hasDbXref>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00002011</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Fresh_water</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02010100">
@@ -210,8 +264,10 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lake</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000252</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ ENVO_00000020</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A lentic (still) water body containing predominantly fresh water</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000252</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Lake</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Note: saline (and other non-fresh water) lakes are not included under this term; in MICRONT, these would be described as "lentic water body" (MICRONT:02060100) with the appropriate qualifiers</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02010101">
@@ -241,7 +297,9 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lake bed</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000268</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ground surface, interface and benthic layer of a lacustrine (lentic) fresh water body.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00000268</oboInOwl:hasDbXref>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In MICRONT, this term encompasses the water layer immediately above the solid ground layer. It is also restricted to fresh water systems; other lake beds are described via a combination of appropriate terms (e.g., saline, lentic water body and benthic)</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02010200">
@@ -259,8 +317,10 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stream</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000253</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ ENVO_00000023</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A lotic (flowing) water body containing predominantly fresh water. Includes streams and rivers.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000253</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Stream</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Note: saline (and other non-fresh water) streams are not included under this term, nor are springs; in MICRONT, these would be described as "lotic water body" (MICRONT:02060200) with the appropriate qualifiers</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02010201">
@@ -290,13 +350,21 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stream bed</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000383</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ground surface, interface and benthic layer of a fluvial (lotic) fresh water body.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00000383</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Stream_bed</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In MICRONT, this term encompasses the water layer immediately above the solid ground layer. It is also restricted to fresh water systems; other stream beds are described via a combination of appropriate terms (e.g., lotic water body and benthic)</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02020000">
   <rdfs:subClassOf rdf:resource="#MICRONT_02000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">marine</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000447</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An aquatic ecosystem primarily determined by marine (ocean or sea) water. This ranges from littoral/coastal to open ocean habitats, as well as from surface water to seafloor.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00000447</skos:exactMatch>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01001788</oboInOwl:hasDbXref>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00001999</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Ocean</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Note: while most marine waters are saline (e.g., meet the criteria for "high salinity", MICRONT:09010103), many marine habitats are indeed dominated by medium salinity (brackish) or very high salinity (briny) water.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02020100">
@@ -308,7 +376,9 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sea floor</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000482</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ground surface, interface and immediate benthic layer at the bottom of a marine water body</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00000482</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Seabed</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02030000">
@@ -320,7 +390,9 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">spring</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000027</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A ground surface feature where water can flow out of the ground. Includes terrestrial springs, as well as aquatic features (such as underwater seeps or vents)</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00000027</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Spring_(hydrology)</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02030100">
@@ -338,7 +410,9 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hot spring</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000051</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A terrestrial spring where hot (geothermally heated) water flows from the ground.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00000051</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Hot_spring</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02030200">
@@ -368,7 +442,9 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hydrothermal vent</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000215</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A marine spring where hot (geothermally heated) water flows from fissures in the seafloord.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00000215</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Hydrothermal_vent</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02030300">
@@ -380,7 +456,8 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">seep</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000262</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A spring where water emerges through permeable ground layers. Includes cold seeps (at ocean floors) and terrestrial seeps (often associated with wetlands).</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000262</oboInOwl:hasDbXref>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02040100">
@@ -392,7 +469,10 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">brackish</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000322</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An aquatic ecosystem determined by water of intermediate (medium) salinity, broadly in the range of 0.5-30ppt</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000322</skos:exactMatch>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00002019</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Brackish_water</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">medium salinity (0.5-30ppt)</rdfs:comment>
 </owl:Class>
 
@@ -405,7 +485,9 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">estuary</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000020</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An aquatic ecosystem at the interface at stream mouths, i.e. the outflow of streams into the sea. Generally determined by brackish water, or the (tidal) mixing of saline and fresh water.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000020</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Estuary</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02040200">
@@ -417,7 +499,10 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">saline</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000307</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An aquatic ecosystem determined by water of high salinity, i.e. in the range of 30-50ppt</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000307</skos:exactMatch>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00002010</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Saline_water</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">high salinity (30-50 ppt)</rdfs:comment>
 </owl:Class>
 
@@ -430,7 +515,9 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">brine</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00003044</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An aquatic habitat determined by water of very high, including near-saturating, concentrations of salt (&gt;=50 ppt)</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00003044</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Brine</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">very high salinity (&gt;=50 ppt)</rdfs:comment>
 </owl:Class>
 
@@ -443,21 +530,23 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ice</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000277</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat determined by water that is frozen solid.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000277</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Ice</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02060100">
   <rdfs:subClassOf rdf:resource="#MICRONT_02000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lentic water body</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000617</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">still (non-flowing) water body</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A still (non-flowing) water body</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000617</skos:exactMatch>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02060200">
   <rdfs:subClassOf rdf:resource="#MICRONT_02000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lotic water body</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000618</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">flowing water body</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A water body with (directed) flow)</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000618</skos:exactMatch>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02070100">
@@ -475,8 +564,10 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">groundwater</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01001004</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">includes aquifers</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Water contained in (subsurface) rock pores or deposits.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01001004</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Groundwater</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In MICRONT, this term also more broadly includes aquifers.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02070200">
@@ -488,60 +579,77 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sediment</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00002007</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Deposits formed at the bottom of water bodies via the deposition (sedimentation) of particles from the liquid phase.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00002007</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Sediment</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In MICRONT, this term specifically refers to sediments in extant water bodies, not to remnant sediments that resulted from former (e.g., dried up) water bodies.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02080100">
   <rdfs:subClassOf rdf:resource="#MICRONT_02000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">littoral</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000125</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Near-shore (coastal) zone of a water body, at the terrestrial-aquatic interface; includes near-shore terrestrial zone as well (i.e., zones that are occasionally inundated and/or directly influenced by the adjacent water body)</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000407</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Littoral_zone</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In MICRONT, this term includes both the aquatic and terrestrial near-shore zone.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02080200">
   <rdfs:subClassOf rdf:resource="#MICRONT_02000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pelagic</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000023</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Open water zone of a water body, neither near the shore nor near the bed.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000023</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Pelagic_zone</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In MICRONT, this term is used as a qualifier and can be used to describe either marine or lake pelagic waters.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02080201">
   <rdfs:subClassOf rdf:resource="#MICRONT_02080200"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">epipelagic</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000035</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">depths 0-200m</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Topmost layer of a water body, extending from the surface to around 200m depth, i.e. as deep as sunlight penetrates to a degree that allows photosynthesis</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000035</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Photic_zone</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02080202">
   <rdfs:subClassOf rdf:resource="#MICRONT_02080200"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mesopelagic</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000036</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">depths 200-1000m</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twilight zone of a water body where &lt;1% of sunlight penetrates, extending roughly from 200-1000m depth</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000036</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Mesopelagic_zone</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02080203">
   <rdfs:subClassOf rdf:resource="#MICRONT_02080200"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">bathypelagic</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000037</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">depths 1000-2500m</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Midnight zone of open ocean water, extending from depths of 1000-2500m (only few lakes are in this depth range)</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000037</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Bathypelagic_zone</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02080204">
   <rdfs:subClassOf rdf:resource="#MICRONT_02080200"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">abyssal</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000038</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">depths 2500-6000m</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Deep marine open water layer extending from a depth of 2500m to roughly 6000m, or to within 100m of the seafloor</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000038</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Abyssal_zone</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02080205">
   <rdfs:subClassOf rdf:resource="#MICRONT_02080200"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hadal</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000039</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">depths &gt;6000m</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Open water within deep marine trenches, at depths &gt;6000m</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000039</skos:exactMatch>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00000214</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Hadal_zone</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02080300">
   <rdfs:subClassOf rdf:resource="#MICRONT_02000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">benthic</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000024</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The bottom layer of a water body, close to its bed and including the upper layers of the ground that are directly influenced by the water body above.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000024</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Benthic_zone</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_02090000">
@@ -559,156 +667,201 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">paludal</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000043</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The aquatic part of a wetland ecosystem</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00000043</oboInOwl:hasDbXref>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In MICRONT, paludal is used as an extra qualifier to specifically refer to the aquatic part (i.e., not the sediment or soil) of a wetland ecosystem.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03000000">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">host-associated</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A microbial habitat that is directly determined by a host organism in terms of physical, abiotic and biotic parameters.</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Host_(biology)</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In MICRONT, host-association is considered based on physical (growth on, in or in direct proximity to the host) and biotic/metabolic (growth directly depending on conditions determined by the host) parameters. Only multicellular eukaryotes are considered as host organisms; associations among bacteria, archaea and unicellular eukaryotes (even including intracellular growth) are not included under this umbrella term. A host-associated lifestlye is considered as opposed to a free-living lifestyle.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03010000">
   <rdfs:subClassOf rdf:resource="#MICRONT_03000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">plant host</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01001001</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by a green plant host (NCBI tax ID 33090, Viridiplantae).</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01001001</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Viridiplantae</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 33090</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID points to "Viridiplantae"</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In MICRONT, host-association is considered based on physical (growth on, in or in direct proximity to the host) and biotic/metabolic (growth directly depending on conditions determined by the host) parameters. Plant-associated habitats do not include plant-derived products, such as foods (fruit, etc.), wood or processed products (such as paper, etc).</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03010100">
   <rdfs:subClassOf rdf:resource="#MICRONT_03010000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rhizosphere</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00005801</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/PO_0009005</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by plant roots, encompassing both root tissues (i.e., the "endorhizosphere") and the region directly adjacent to roots which is influenced by plant secretions.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00005801</oboInOwl:hasDbXref>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PO:0009005</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Rhizosphere</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In MICRONT, a broad definition is used to include both the roots themselves and the region immediately adjacent. Elsewhere, "rhizosphere" is often defined more narrowly to only include root-adjacent soil or substrate (e.g. ENVO:00005801)</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03010200">
   <rdfs:subClassOf rdf:resource="#MICRONT_03010000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">phyllosphere</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/PO_0006001</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by non-root parts of a plant, e.g. above-ground tissues like leaves and flowers, but also the stem.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PO:0006001</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Phyllosphere</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03010300">
   <rdfs:subClassOf rdf:resource="#MICRONT_03010000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">plant litter</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000628</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dead plant material (primarily leaves, bark, twigs, etc) that has fallen to the ground.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000628</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Plant_litter</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Does not include (dropped) fruit.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020000">
   <rdfs:subClassOf rdf:resource="#MICRONT_03000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">animal host</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01001002</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by an animal host (NCBI tax ID 33208, Metazoa).</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01001002</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Animal</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 33208</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Metazoa"</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In MICRONT, host-association is considered based on physical (growth on, in or in direct proximity to the host) and biotic/metabolic (growth directly depending on conditions determined by the host) parameters. Animal-associated environments do not include animal-derived products, like food products (dairy, meat, etc) or processed products such as leather, etc.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020100">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mammalian host</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by a mammalian host (NCBI tax ID 40674, Mammalia)</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Mammal</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 40674</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020101">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020100"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">porcine host</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by a porcine host (NCBI tax ID 40674, Suidae, i.e. swine)</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Suidae</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 9821</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Suidae"</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Suidae correspond to swine, including pigs, hogs, etc.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020110">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020100"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">primate host</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by a primate host (NCBI tax ID 9443, Primates)</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Primate</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 9443</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">This includes lemurs, monkeys, apes (including humans), etc.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020111">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020110"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">human host</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by a human host (NCBI tax ID 9606, Homo sapiens)</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Human</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 9606</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020120">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020100"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ruminant host</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by a ruminant host (NCBI tax ID 9845, Ruminantia)</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Ruminant</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 9845</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Ruminantia"</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Includes herbivores whose digestive system includes a rumen, but the definition is based on taxonom (suborder Ruminantia). Members include cervids (deer), bovids (like cattle, sheep, goats and antelopes), and giraffes.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020121">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020120"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">bovine host</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by a bovine host (NCBI tax ID 27592, Bovinae).</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Bovinae</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 27592</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Bovinae"</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Includes cattle, bison, buffalo and certain types of antelopes.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020122">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020120"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cervid host</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat direclty determined by a cervid host (NCBI tax ID 9850, Cervidae, i.e. deer)</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Deer</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 9850</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Cervidae", i.e. deer</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020123">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020120"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ovine host</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by an ovine host (NCBI tax ID 9935, genus Ovis, i.e. sheep)</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Ovis</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 9935</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for genus "Ovis", i.e. sheep</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020124">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020120"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">caprine host</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat direclty determined by a caprine host (NCBI tax ID 9922, genus Capra, i.e. goats iand ibex, but not including other caprines like sheep etc)</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Capra_(genus)</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 9922</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for genus "Capra", i.e. goats and ibex</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020130">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020100"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">carnivore host</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by a carnivore host (NCBI tax ID 33554, Carnivora)</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Carnivora</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 33554</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Carnivora"</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Definition is based on phylogeny, not on carnivorous dietary habits, although most Carnivora are indeed carnivorous. Group includes dogs, cats, bears, seals, otters, etc</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020131">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020130"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">canine host</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by a canine host (NCBI tax ID 9608, Canidae)</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Canidae</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 9608</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Canidae", i.e. dogs, wolfs, coyotes and foxes</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Includes dogs, wolves, coyotes and foxes. Note: tax ID more broadly corresponds to family Canidae, but only extant subfamily are Caninae.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020132">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020130"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">feline host</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat direclty determined by a feline host (NCBI tax ID 9681, Felidae)</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Felidae</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 9681</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Felidae", i.e. cats and panthers</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Includes cats and panthers. Note: tax ID more broadly corresponds to family Felidae, but only extant subfamily is Felinae (which includes cats and panthers).</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020133">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020130"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ursine host</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by an ursine host (NCBI tax ID 9632, Ursidae, i.e. bears)</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Bear</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 9632</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Ursidae", i.e. bears</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Note: family Ursidae includes bears (Ursinae), as well as short-faced bears and pandas.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020200">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">reptilian host</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat direclty determined by a reptilian host (NCBI tax ID 32561, Sauria; see comment)</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Reptile</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 32561</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Sauria"; this includes birds</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Given unclear taxonomy of the group "Reptilia", the NCBI taxonomy is used where tax ID "Sauria" includes all reptilian groups, including birds.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020210">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020200"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">avian host</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by an avian host (NCBI tax ID 8782, Aves, i.e. birds)</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Bird</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 8782</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Aves"</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020300">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">insect host</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by an insect host (NCBI tax ID 50557, Insecta)</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Insect</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 50557</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Insecta"</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020301">
@@ -720,8 +873,9 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tick host</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by a tick host (NCBI tax ID 69335, Ixodida)</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Tick</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 6935</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Ixodida"</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020400">
@@ -733,15 +887,19 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fish host</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat direcly determined by a ray-finned fish host (NCBI tax ID 7898, Actinopterygii; see comment)</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Actinopterygii</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 7898</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Actinopterygii", i.e. ray-finned fishes</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Includes ray-finned fishes, but neither cartilaginous fishes (like sharks, rays) nor Sarcopterygii (which would include lungfish and extant groups mammals, reptiles and amphibians and therefore introduce unintended annotations with misleading ecological implications)</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020500">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mollusc host</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat direclty determined by a mollusc host (tax ID 7898, Mollusca)</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Mollusca</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 6447</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Mollusca"</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Includes bivalves (mussels, clams, etc), gastropods (snails, slugs, etc), cephalopods (squid, octopus, etc), and further groups within the phylum Mollusca. As more respective data comes in, additional subcategories for these groups may be introduced in MICRONT in the future</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020600">
@@ -759,9 +917,11 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">coral host</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000150</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by a coral host (tax ID 6101, Anthrozoa)</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00000150</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Coral</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 6101</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Anthozoa"</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">More broadly includes "coral reef" habitats, i.e. not only habitats directly physically located on or in a coral host, but including the immediate surroundings.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020700">
@@ -779,36 +939,52 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sponge host</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by a sponge host (tax ID 6040, Porifera)</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Sponge</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 6040</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Porifera"</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">More broadly includes not only habitats directly physically located on or in sponge tissue, but also immediate surroundings.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03020800">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">amphibian host</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by an amphibian host (tax ID 8292, Amphibia)</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Amphibian</rdfs:seeAlso>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NCBI taxonomy ID: 8292</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tax ID for "Amphibia"</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Includes frogs, salamanders, etc</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03030100">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">digestive tract</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01001033</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0001555</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by a digestive tract, i.e. an animal's anatomical and physiological system for the digestion of food.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01001033</skos:exactMatch>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UBERON:0001555</oboInOwl:hasDbXref>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03030110">
   <rdfs:subClassOf rdf:resource="#MICRONT_03030100"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mouth</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_08000002</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0000165</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by an oral cavity.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:08000002</skos:exactMatch>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UBERON:0000165</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Mouth</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Includes tongue, teeth, etc, but also secretions (saliva) and accretions (dental plaque, etc).</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03030111">
   <rdfs:subClassOf rdf:resource="#MICRONT_03030110"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_03030500"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">saliva</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_02000036</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0001836</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A bodily fluid secreted from specialized glands in the oral cavity. Usually involved in initial digestion steps, e.g. catalysing the breakdown of starch.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:02000036</skos:exactMatch>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UBERON:0001836</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Saliva</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03030112">
@@ -826,12 +1002,16 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ancient dental calculus</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Paleontological sample of calculus, i.e. accretions of multiple layers of hardened dental plaque.</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Calculus_(dental)</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03030120">
   <rdfs:subClassOf rdf:resource="#MICRONT_03030100"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stomach</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0000945</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hollow organ as part of a digestive tract, involved in the gastric phase of digestion, i.e. breakdown of food via secreted digestive enzymes and often via acidification.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UBERON:0000945</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Stomach</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03030130">
@@ -843,51 +1023,68 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rumen</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0007365</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A specialized stomach in ruminants, involved in the breakdown of food including structural carbohydrates (such as celluloses) under the participation of microbial communities</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UBERON:0007365</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Rumen</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Note: although the rumen is anatomically a stomach, its physiology is so different from other gastric organs that it is considered as a separate category (and not a subcategory of stomachs) in MICRONT.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03030140">
   <rdfs:subClassOf rdf:resource="#MICRONT_03030100"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">intestine</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_2100002</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0000160</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A series of specialized organs in the lower gastrointestinal tract, involved in the further digestion of chyme exiting from the stomach. The intestine generally spans from the exit of the stomach to the anus or rectum.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:2100002</skos:exactMatch>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UBERON:0000160</oboInOwl:hasDbXref>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03030141">
   <rdfs:subClassOf rdf:resource="#MICRONT_03030140"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">feces</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00002003</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Solid or semisolid of non-digested food and shed host cells, excreted via the anus.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00002003</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Feces</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03030200">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">urogenital tract</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0004122</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Primary sex organs of the reproductive system and organs of the urinary system.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UBERON:0004122</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Genitourinary_system</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03030201">
   <rdfs:subClassOf rdf:resource="#MICRONT_03030200"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">vagina</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0000996</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Organ of the female reproductive tract in mammals.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UBERON:0000996</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Vagina</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03030300">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">airways</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0001004</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Respiratory tract organs in mammals, spanning from nasal cavity to lung.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UBERON:0001004</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Respiratory_tract</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Note: in MICRONT, use is currently restricted to mammalian airways, as samples from non-mammalian animals are not (yet) prevalent in repositories.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03030400">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">skin</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_2100003</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0002097</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Habitat provided by the flexible outer tissue covering the body of a vertebrate animal.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:2100003</skos:exactMatch>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UBERON:0002097</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Skin</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03030500">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">bodily fluid</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_02000019</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Liquids produced and/or secreted by animal bodies.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:02000019</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Body_fluid</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03030501">
@@ -899,61 +1096,77 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">breast milk</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_02000031</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">refers to breast milk only; note that milk as (processed) food stuff is annotated as "anthropogenic:food:dairy product"</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Milk produced in the mammary glands of women. Definition in the narrow sense, i.e. restricted to human breast milk.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:02000031</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Breast_milk</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">refers to human breast milk only; note that milk of other mammals as (processed) food stuff is annotated as "anthropogenic:food:dairy product"</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03030502">
   <rdfs:subClassOf rdf:resource="#MICRONT_03030500"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">blood</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_02000020</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bodily fluid in vertebrates that transports nutrients, oxygen, metabolic waste products and body cells (including immune cells) within a circulatory system.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:02000020</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Blood</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03030503">
   <rdfs:subClassOf rdf:resource="#MICRONT_03030500"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cerebrospinal fluid</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_02000029</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bodily fluid surrounding meningeal tissues in parts of the brain and along the spinal cord.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:02000029</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Cerebrospinal_fluid</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03030600">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mucosa</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0000344</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Membraneous layer covering internal organs and lining cavities within an animal, e.g. within the mouth, nose, lung, gut or vagina.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UBERON:0000344</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Mucous_membrane</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_03030700">
   <rdfs:subClassOf rdf:resource="#MICRONT_03020000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">eye</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/UBERON_0000970</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by an animal's eye, i.e. a primary visual sensual organ.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">UBERON:0000970</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Eye</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_04000000">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">anthropogenic</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000313</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat that is directly and primarily determined by the impact of human activity, in particular in terms of its physical, chemical and biotic makeup.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000313</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Anthropogenic_biome</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_04010000">
   <rdfs:subClassOf rdf:resource="#MICRONT_04000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">artificial</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A biological sample that is not directly derived from an environmental or host-associated microbial habitat, or which has been processed to intenionally skew the taxonomic or functional composition relative to a sample of origin.</obo:IAO_0000115>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In MICRONT, this category includes laboratory experiments, mock communities, negative and positive control samples, spike-in experiments, cultivation and enrichment designs, sorted cells, and others.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_04010100">
   <rdfs:subClassOf rdf:resource="#MICRONT_04010000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mock community</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_08000002</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An artificial sample with a predefined mix of organisms, used as reference or for laboratory experiments.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01001059</oboInOwl:hasDbXref>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_04010200">
   <rdfs:subClassOf rdf:resource="#MICRONT_04010000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">negative control</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01001042</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An artificial sample that should not contain any microbes, or that was obtained to establish a baseline for microbial contamination control.</obo:IAO_0000115>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Note: in MICRONT this term refers exclusively to sampling control (e.g., swabs only or extraction buffers without biological input material); it does *not* encompass negative controls in a study design sense, i.e. samples with a control treatment.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_04010300">
   <rdfs:subClassOf rdf:resource="#MICRONT_04010000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">controlled environment</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">microcosms and mesocosms</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An experimental setup within an environment where parameters like temperature and nutrient/gas availability can be actively controlled. Encompasses in particular cultivation experiments from real environmental samples, such as microcosm or mesocosm experiments.</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_04020000">
@@ -965,12 +1178,16 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">built environment</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat directly determined by human-manufactured structures at macroscopic scales, e.g. buildings and public infrastructure (like roads, etc)</obo:IAO_0000115>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Built_environment</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_04020100">
   <rdfs:subClassOf rdf:resource="#MICRONT_04020000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hospital environment</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00002173</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A building where healthcare services are provided to patients by specialized staff using specialized equipment.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00002173</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Hospital</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_04030000">
@@ -982,8 +1199,10 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wastewater</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00002001</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">generic term to be used when more specific info is not available</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Water impacted by human influence, e.g. following domestic, agricultural or industrial uses.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00002001</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Wastewater</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In MICRONT, this term to be used as generic default when more specific info is not available</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_04030100">
@@ -995,31 +1214,42 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sewage</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00002018</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">unprocessed wastewater (before reaching the treatment plant)</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Unprocessed domestic wastewater (before reaching a treatment plant), usually containing urine and feces.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00002018</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Sewage</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_04030200">
   <rdfs:subClassOf rdf:resource="#MICRONT_04030000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sludge</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00002044</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Semi-solid slurry that remains after wastewater treatment.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00002044</oboInOwl:hasDbXref>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Includes also activated sludge (ENVO:00002046)</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_04040000">
   <rdfs:subClassOf rdf:resource="#MICRONT_04000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">agriculture</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000077</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat that is directly determined or influenced by agricultural activity, i.e. crop or livestock farming.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00000077</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Agriculture</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In MICRONT, the term is primarily used as an additional qualifier, e.g. to specify that a soil (MICRONT:01010000) is indeed an agricultural soil. Also includes aquaculture samples.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_04040100">
   <rdfs:subClassOf rdf:resource="#MICRONT_04040000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">crop farming</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat that is primarily determined by (annual) crop species and agricultural activity.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01001244</oboInOwl:hasDbXref>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_04040200">
   <rdfs:subClassOf rdf:resource="#MICRONT_04040000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">manure</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Animal feces that are used as organic fertilizer in agriculture.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01001244</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Manure</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Note: in MICRONT, this term explicitly only encompasses animal manure; compost or "green manure" are considered in a separate category (MICRONT:04070100) as they are procedurally similar (used as fertilizers), but ecologically and microbiologically very distinct.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_04050000">
@@ -1031,25 +1261,41 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mine</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00000076</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A habitat primarily determined by anthropogenic excavations at or below the Earth's surface for the extraction of minerals.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00000076</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Mining</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_04060000">
   <rdfs:subClassOf rdf:resource="#MICRONT_04000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">food</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/FOODON_00002403</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Any substance consumed for nutritional purposes. Includes unprocessed (e.g., raw fruit and vegetables) and processed (e.g., fermented or cooked) food.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FOODON:00002403</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Food</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In MICRONT, the term primarily refers to food for human consumption, not e.g. feed for livestock or food sources for wild animals (like krill for whales, etc)</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_04060100">
   <rdfs:subClassOf rdf:resource="#MICRONT_04060000"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#crosslinked_to"/>
+      <owl:someValuesFrom rdf:resource="#MICRONT_09010403"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fermented food</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/FOODON_00001258</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Processed food where carbohydrates have been metabolized under (mostly) anaerobic conditions by microorganisms.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FOODON:00001258</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Fermentation_in_food_processing</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Includes in particular lactic acid, alcohol and acetic acid fermentation, among others.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_04060200">
   <rdfs:subClassOf rdf:resource="#MICRONT_04060000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dairy product</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/FOODON_00001256</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Food product derived from mammalian milk, usually cow, sheep, goat or mare's milk.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FOODON:00001256</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Dairy_product</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_04060201">
@@ -1061,138 +1307,152 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cheese</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Processed dairy product based on coagulated and fermented milk.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FOODON:00001013</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Cheese</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_04060300">
   <rdfs:subClassOf rdf:resource="#MICRONT_04060000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">meat product</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Food product derived from animal tissue, usually muscle.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FOODON:00004242</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Meat</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_04070000">
   <rdfs:subClassOf rdf:resource="#MICRONT_04000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">waste</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00002264</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Undesired or unusable material discarded as the result of human activity, but excluding humans bodily excreta.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00002264</skos:exactMatch>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Waste</rdfs:seeAlso>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_04070100">
   <rdfs:subClassOf rdf:resource="#MICRONT_04070000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">compost</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00002170</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Decomposing plant or food waste, generally used as fertilizer in agriculture.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00002170</oboInOwl:hasDbXref>
+  <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://en.wikipedia.org/wiki/Compost</rdfs:seeAlso>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Note: does not include plant litter (MICRONT:03010300) which specifically to dead plant material that has fallen to the ground where it may also decompose, but not in a human-impacted process like composting. Also not associated with the term manure (MICRONT:04040200) which in MICRONT refers to animal manure only, even though compost and "green manure" are functionally similar in that all are generally used as fertilizer.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_05000000">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">air</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00002005</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Aerial habitats, including aerosol particles and other airborne particulate matter.</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00002005</oboInOwl:hasDbXref>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09010101">
   <rdfs:subClassOf rdf:resource="#MICRONT_09010100"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">low salinity</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;0.5ppt in water</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">salinity &lt;0.5 ppt (in water)</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09010102">
   <rdfs:subClassOf rdf:resource="#MICRONT_09010100"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">medium salinity</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.5-30ppt in water</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.5 ppt ≤ salinity &lt; 30 ppt (in water)</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09010103">
   <rdfs:subClassOf rdf:resource="#MICRONT_09010100"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">high salinity</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">30-50ppt in water</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">30 ppt ≤ salinity &lt; 50 ppt (in water)</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09010104">
   <rdfs:subClassOf rdf:resource="#MICRONT_09010100"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">very high salinity</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&gt;50ppt in water</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">salinity &gt;50 ppt (in water)</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09010201">
   <rdfs:subClassOf rdf:resource="#MICRONT_09010200"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">very low temperature</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000309</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/PATO_0001306</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;=7 deg C</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">temperature &lt;=7 deg C</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09010202">
   <rdfs:subClassOf rdf:resource="#MICRONT_09010200"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">low temperature</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000309</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/PATO_0001306</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8-19 deg C</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">temperature 8-19 deg C</obo:IAO_0000115>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000309</oboInOwl:hasDbXref>
+  <oboInOwl:hasDbXref rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PATO:0001306</oboInOwl:hasDbXref>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09010203">
   <rdfs:subClassOf rdf:resource="#MICRONT_09010200"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">medium temperature</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">20-45 deg C</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">temperature 20-45 deg C</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09010204">
   <rdfs:subClassOf rdf:resource="#MICRONT_09010200"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">high temperature</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000305</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">46-64 deg C</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">temperature 46-64 deg C</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000305</skos:exactMatch>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09010205">
   <rdfs:subClassOf rdf:resource="#MICRONT_09010200"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">very high temperature</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000318</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&gt;=65 deg C</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">temperature &gt;=65 deg C</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000318</skos:exactMatch>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09010301">
   <rdfs:subClassOf rdf:resource="#MICRONT_09010300"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">acidic</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000315</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pH &lt; 6</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pH &lt;6</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000315</skos:exactMatch>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09010302">
   <rdfs:subClassOf rdf:resource="#MICRONT_09010300"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">neutral ph range</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pH range 6-8</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09010303">
   <rdfs:subClassOf rdf:resource="#MICRONT_09010300"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">alkaline</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000316</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pH &gt; 8</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pH &gt;8</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000316</skos:exactMatch>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09010401">
   <rdfs:subClassOf rdf:resource="#MICRONT_09010400"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">oxic</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&gt;= 4mg/L</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">oxygen concentration ≥ 4mg/L</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09010402">
   <rdfs:subClassOf rdf:resource="#MICRONT_09010400"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hypoxic</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">or hypoxic, &lt;4 mg/L oxygen (but could be 3), see https://www.pnas.org/doi/10.1073/pnas.0803833105</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">low oxygen concentration, in the range of 0.5-4 mg/L; equivalent to "hypoxic" environment</obo:IAO_0000115>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also https://www.pnas.org/doi/10.1073/pnas.0803833105</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09010403">
   <rdfs:subClassOf rdf:resource="#MICRONT_09010400"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">anoxic</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">or anoxic, &lt;0.5 mg/L oxygen</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">very low or no oxygen; O2 concentration &lt;0.5 mg/L</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09030000">
   <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">biofilm</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_00002034</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An aggregation of microorganisms, usually a community of distinct species, embedded with a secreted extracellular matrix. Generally adherent to a solid substrate.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:00002034</skos:exactMatch>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09030100">
   <rdfs:subClassOf rdf:resource="#MICRONT_09030000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">microbial mat</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/ENVO_01000008</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A multi-layered, complex biofilm of microorganisms; can be up to several cm thick.</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENVO:01000008</skos:exactMatch>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09040100">
@@ -1204,7 +1464,7 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wild</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wild animals</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wild animals, not held or bred in captivity</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09040200">
@@ -1216,7 +1476,7 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">captive</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">captive animals (eg in a zoo), but not domesticated</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Captive animals (e.g. in a zoo), but not domesticated</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09040300">
@@ -1234,6 +1494,7 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">domestic</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Domesticated animals, i.e. in close dependence to humans, bred over multiple generations</obo:IAO_0000115>
   <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">includes domesticated animals</rdfs:comment>
 </owl:Class>
 
@@ -1246,48 +1507,49 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pet</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Companion animals living in close association with humans, usually within a household and with constant (social) interactions with humans</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09020101">
   <rdfs:subClassOf rdf:resource="#MICRONT_09020100"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">infant</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0&lt;age≤2yr old</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Human infant, aged 0-2 years</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09020102">
   <rdfs:subClassOf rdf:resource="#MICRONT_09020100"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">child</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2&lt;age≤10yrs old</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Human child, aged &gt;2 to 10 years</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09020103">
   <rdfs:subClassOf rdf:resource="#MICRONT_09020100"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">adolescent</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10&lt;age≤18 yrs old</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Human adolescent, aged &gt;10 to &lt;18 years</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09020104">
   <rdfs:subClassOf rdf:resource="#MICRONT_09020100"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">adult</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18&lt;age&lt;65yrs old</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Human adult, aged 18 to 65 years</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09020105">
   <rdfs:subClassOf rdf:resource="#MICRONT_09020100"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">elderly</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">≥65 yrs old</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Human elderly, aged &gt;65 years</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09020201">
   <rdfs:subClassOf rdf:resource="#MICRONT_09020200"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">preterm birth</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt;37 gestational weeks</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Born at &lt;37 weeks gestational age (for humans)</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09020202">
   <rdfs:subClassOf rdf:resource="#MICRONT_09020200"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">full term birth</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&gt;=37 gestational weeks</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Born at ≥37 weeks gestational age (for humans)</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09020301">
@@ -1299,23 +1561,25 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">urban dweller</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">subject lives in an urban area (https://en.wikipedia.org/wiki/Urban_area)</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">subject lives in an urban area (https://en.wikipedia.org/wiki/Urban_area)</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09020302">
   <rdfs:subClassOf rdf:resource="#MICRONT_09020300"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rural dweller</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">subject lives in a rural area (https://en.wikipedia.org/wiki/Rural_area)</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">subject lives in a rural area (https://en.wikipedia.org/wiki/Rural_area)</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09020401">
   <rdfs:subClassOf rdf:resource="#MICRONT_09020400"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">industrialized</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lifestyle dominated by products and services provided by the use of (industrial) machines and technology</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09020402">
   <rdfs:subClassOf rdf:resource="#MICRONT_09020400"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">non-industrialized</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lifestyle not majorly impacted by products and services resulting from the use of industrial machines and technology; this includes in particular food production and processing, domestic living conditions (including sanitation) and transport</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09020403">
@@ -1327,6 +1591,7 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hunter-gatherer</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Non-industrialized lifestyle where food is primarily obtained by foraging, i.e. not relying on agriculture or animal husbandry</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09020404">
@@ -1338,79 +1603,80 @@
     </owl:Restriction>
   </rdfs:subClassOf>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">traditional agriculturalist</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this includes pastoralists</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Non-industrialized lifestyle where food is primarily obtained from traditional agriculture, i.e. procuded in small lots without relying on industrial machines and technology; this includes pastoralism.</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09090100">
   <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ancient microbiome</rdfs:label>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Palaeontological samples from preserved microbial communities, e.g. from ancient dental calculus or mummified tissues</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09090200">
   <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">contaminated</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">see also: http://purl.obolibrary.org/obo/CHEBI_78298</rdfs:comment>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">impacted by a contaminant</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">impacted by a contaminant, e.g. chemical or radioactive; does not refer to laboratory contamination (introduced e.g. via extraction kits)</obo:IAO_0000115>
+  <skos:exactMatch rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CHEBI:78298</skos:exactMatch>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09000000">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">descriptive tags</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09010100">
   <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">salinity</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09010200">
   <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">temperature</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09010300">
   <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ph</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09010400">
   <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">oxygen level</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09040000">
   <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">captivity status</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09020100">
   <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">age group</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09020200">
   <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">birth term</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09020300">
   <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">place of residence</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</obo:IAO_0000115>
 </owl:Class>
 
 <owl:Class rdf:about="#MICRONT_09020400">
   <rdfs:subClassOf rdf:resource="#MICRONT_09000000"/>
   <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">host lifestyle</rdfs:label>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</rdfs:comment>
+  <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a placeholder class to define term hierarchy; do not use for annotations</obo:IAO_0000115>
 </owl:Class>
 
 
